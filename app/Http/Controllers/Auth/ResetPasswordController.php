@@ -27,4 +27,28 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = 'collection';
+
+    /**
+     * Get the password reset validation rules.
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return [
+            'password' => ['required', 'string', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', 'confirmed']
+        ];
+    }
+
+    /*
+    * Error messages for the validation
+    *
+    * @return array
+    */
+    protected function validationErrorMessages()
+    {
+        return [
+            'password.regex' => 'The password must contain a lowercase character, an uppercase character and a number.'
+        ];
+    }
 }
