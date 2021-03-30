@@ -30,16 +30,33 @@
                                 </div>
                             </div>
                         @else
-                            <a href="#">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                            <div class="row justify-content-center">
+                                <h3>You're already logged in as "{{ Auth::user()->name }}".</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-8 p-2">
+                                    <a class="btn btn-light btn-lg btn-block border-dark" role="button"
+                                        href="{{ route('collection') }}">
+                                        Go to my collection
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mt-3">
+                                <h3>Not you?</h3>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-8 p-2">
+                                    <a class="btn btn-light btn-lg btn-block border-dark" 
+                                        href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
                         @endguest
                     </div>
                     <!-- AUTH LINKS END -->
