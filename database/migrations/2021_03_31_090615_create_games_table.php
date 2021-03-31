@@ -19,7 +19,7 @@ class CreateGamesTable extends Migration
             $table->integer('api_id')->unique();
             $table->string('name');
             $table->text('summary')->nullable();
-            $table->timestamp('first_release_date')->nullable();
+            $table->date('first_release_date')->nullable();
             $table->string('cover')->nullable();
             $table->string('platform')->default('PS4');
             $table->string('screenshot_1')->nullable();
