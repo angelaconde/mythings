@@ -41,6 +41,7 @@ class Game extends Model
      * @var array
      */
     protected $casts = [
-        'first_release_date' => 'datetime',
+        'first_release_date' => 'date',
     ];
+
 }
