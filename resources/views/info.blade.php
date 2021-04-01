@@ -29,6 +29,17 @@
                                         href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </div>
                             </div>
+                            <div class="row justify-content-center mt-3">
+                                <div class="col-8 col-md-10 p-2">
+                                    <div class="btn-group col-12 m-0 p-0 border border-dark rounded">
+                                        <a class='btn btn-danger disabled'><i class="fab fa-google"></i></a>
+                                        <a href="{{ url('/login/google') }}"
+                                            class="btn btn-danger btn-block">
+                                            {{ __('Login with Google') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         @else
                             <div class="row justify-content-center">
                                 <h3>You're already logged in as "{{ Auth::user()->name }}".</h3>

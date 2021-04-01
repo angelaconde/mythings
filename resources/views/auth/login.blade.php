@@ -87,7 +87,7 @@
                                                         <a class='btn btn-danger disabled'><i class="fab fa-google"></i></a>
                                                         <a href="{{ url('/login/google') }}"
                                                             class="btn btn-danger btn-block">
-                                                            {{ __('Acceder con Google') }}
+                                                            {{ __('Login with Google') }}
                                                         </a>
                                                     </div>
                                                 </div>

@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/collection', [App\Http\Controllers\HomeController::class, 'index'])->name('collection');
 
 Route::get('/pruebapi/{game}', 'GameController@addGame');
+
+//OAuth
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('{provider}/callback', 'Auth\LoginController@handleProviderCallback');
