@@ -29,6 +29,7 @@ class CreateUserGamesTable extends Migration
             // Foreign keys
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('game_id')->constrained('games');
+            $table->unique(['user_id', 'game_id']);
         });
     }
 
