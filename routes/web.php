@@ -18,3 +18,5 @@ Route::get('/', 'LandingController@index')->name('landing');
 Auth::routes();
 
 Route::get('/collection', [App\Http\Controllers\HomeController::class, 'index'])->name('collection');
+
+Route::get('/pruebapi/{game}', 'GameController@addGame');

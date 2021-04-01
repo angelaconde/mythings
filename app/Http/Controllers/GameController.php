@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Http;
 use App\Models\Game;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -33,8 +34,14 @@ class GameController extends Controller
             $message = "GAME ALREADY IN DB!";
             return view('collection', ['message' => $message]);
         } else {
-            // If not in DB add to DB
-            $this->makeGame($gameInfo);
+            // If not in DB add to DB and save cover and images
+            $game = $this->makeGame($gameInfo);
+            $this->storeImage($game->cover, 'coverBig');
+            $this->storeImage($game->cover, 'coverSmall');
+            $this->storeImage($game->screenshot_1, 'screenshot');
+            $this->storeImage($game->screenshot_1, 'thumbnail');
+            $this->storeImage($game->screenshot_2, 'screenshot');
+            $this->storeImage($game->screenshot_2, 'thumbnail');
 
             // Add to user collection
             // TO DO
@@ -81,7 +88,7 @@ class GameController extends Controller
     /**
      * Make Game from info
      * 
-     * @return void
+     * @return Game
      */
     function makeGame($gameInfo)
     {
@@ -96,5 +103,49 @@ class GameController extends Controller
         $game->screenshot_2 = $gameInfo[0]['artworks'][1]['image_id'] ?? "screenshot_not_found";
         $game->video = $gameInfo[0]['videos'][0]['video_id'] ?? "x7QhUL8NUK4";
         $game->save();
+
+        return $game;
+    }
+
+    /** 
+     * Check if image exists
+     * 
+     * @return boolean
+     */
+    function imageExists($image)
+    {
+        return !str_contains($image, 'not_found');
+    }
+
+    /**
+     * Get and store image
+     * 
+     * @return void
+     */
+    function storeImage($image, $size)
+    {
+        if ($this->imageExists($image)) {
+            switch ($size) {
+                case "coverSmall":
+                    $url = 'https://images.igdb.com/igdb/image/upload/t_cover_small/' . $image . '.jpg';
+                    $disk = 'cover_small';
+                    break;
+                case "coverBig":
+                    $url = 'https://images.igdb.com/igdb/image/upload/t_cover_big/' . $image . '.jpg';
+                    $disk = 'cover_big';
+                    break;
+                case "screenshot":
+                    $url = 'https://images.igdb.com/igdb/image/upload/t_screenshot_huge/' . $image . '.jpg';
+                    $disk = 'screenshot';
+                    break;
+                case "thumbnail":
+                    $url = 'https://images.igdb.com/igdb/image/upload/t_logo_med/' . $image . '.jpg';
+                    $disk = 'thumbnail';
+                    break;
+            }
+            $filename = $image . '.jpg';
+            $file = file_get_contents($url);
+            Storage::disk($disk)->put($filename, $file);
+        }
     }
 }

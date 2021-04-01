@@ -38,8 +38,36 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
+        ],
+
+        'cover_small' => [
+            'driver' => 'local',
+            'root' => public_path('img/games/cover_small'),
+            'url' => env('APP_URL') . '/public',
+            'visiblity' => 'public',
+        ],
+
+        'cover_big' => [
+            'driver' => 'local',
+            'root' => public_path('img/games/cover_big'),
+            'url' => env('APP_URL') . '/public',
+            'visiblity' => 'public',
+        ],
+
+        'screenshot' => [
+            'driver' => 'local',
+            'root' => public_path('img/games/screenshot'),
+            'url' => env('APP_URL') . '/public',
+            'visiblity' => 'public',
+        ],
+
+        'thumbnail' => [
+            'driver' => 'local',
+            'root' => public_path('img/games/thumbnail'),
+            'url' => env('APP_URL') . '/public',
+            'visiblity' => 'public',
         ],
 
         's3' => [
