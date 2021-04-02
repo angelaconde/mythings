@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/collection', [App\Http\Controllers\HomeController::class, 'index'])->name('collection');
 
-Route::get('/pruebapi/{game}', 'GameController@addGame');
+// FORMULARIO AÑADIR JUEGO
+Route::post('add', 'GameController@addGame')->name('add');
 
 //OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

@@ -5,52 +5,69 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Http;
 use App\Models\Game;
+use App\Models\UserGame;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class GameController extends Controller
 {
     /**
-     * Add game to database.
+     * Add game to user games table and games table if needed.
      * 
-     * @return 
+     * @return void
      */
-    function addGame($name)
+    function addGame(Request $request)
     {
         // Look for game in API
+        $name = $request->title;
         $gameInfo = $this->getGameInfoByNameFromAPI($name);
-
-        // If not found in API
-        // TO DO
-
-        // If found, check it's not already in DB
-        $alreadyInDB = $this->gameInDB($gameInfo[0]['id']);
-
-        // If already in DB
-        if ($alreadyInDB) {
-            // Add to user collection
-            // TO DO
-
-            // Return success message
-            $message = "GAME ALREADY IN DB!";
+        // Not found
+        if (!$gameInfo) {
+            $message = "WE COULDN'T FIND THIS GAME, SORRY!";
             return view('collection', ['message' => $message]);
+            // Found
         } else {
-            // If not in DB add to DB and save cover and images
-            $game = $this->makeGame($gameInfo);
-            $this->storeImage($game->cover, 'coverBig');
-            $this->storeImage($game->cover, 'coverSmall');
-            $this->storeImage($game->screenshot_1, 'screenshot');
-            $this->storeImage($game->screenshot_1, 'thumbnail');
-            $this->storeImage($game->screenshot_2, 'screenshot');
-            $this->storeImage($game->screenshot_2, 'thumbnail');
-
-            // Add to user collection
-            // TO DO
-
-            // Return success message
-            $message = "GAME ADDED!";
-            return view('collection', ['message' => $message]);
+            // Get his API id
+            $apiID = $gameInfo[0]['id'];
+            // Check it's not already in DB
+            $alreadyInDB = $this->gameInDB($apiID);
+            // Is in DB
+            if ($alreadyInDB) {
+                // Get game id
+                $gameID = $this->getIDbyApiID($apiID);
+                // Check it's not already in user collection
+                $alreadyInUserCollection = $this->gameInUserCollection($gameID);
+                // Is in collection
+                if ($alreadyInUserCollection) {
+                    $message = "YOU ALREADY HAVE THIS GAME IN YOUR COLLECTION";
+                    return view('collection', ['message' => $message]);
+                    // Isn't in collection
+                } else {
+                    // Make UserGame and add to DB
+                    $this->makeUserGame(Auth::user()->id, $gameID, $request);
+                    // Return success message
+                    $message = "GAME ADDED TO YOUR COLLECTION";
+                    return view('collection', ['message' => $message]);
+                }
+                // Isn't in DB
+            } else {
+                // If not in DB add to DB and save cover and images
+                $game = $this->makeGame($gameInfo);
+                $this->storeImage($game->cover, 'coverBig');
+                $this->storeImage($game->cover, 'coverSmall');
+                $this->storeImage($game->screenshot_1, 'screenshot');
+                $this->storeImage($game->screenshot_1, 'thumbnail');
+                $this->storeImage($game->screenshot_2, 'screenshot');
+                $this->storeImage($game->screenshot_2, 'thumbnail');
+                // Make UserGame and add to DB
+                $this->makeUserGame(Auth::user()->id, $game->id, $request);
+                // Return success message
+                $message = "GAME ADDED TO COLLECTION AND OUR DB";
+                return view('collection', ['message' => $message]);
+            }
         }
     }
+
 
     /**
      * Look for the game in the database by API id.
@@ -60,6 +77,24 @@ class GameController extends Controller
     function gameInDB($id)
     {
         return Game::where('api_id', $id)->exists();
+    }
+
+    /**
+     * Look for the game in the user collection by API id.
+     * 
+     * @return boolean
+     */
+    function gameInUserCollection($id)
+    {
+        return UserGame::where('user_id', Auth::user()->id)->where('game_id', $id)->exists();
+    }
+
+    /** 
+     * Get game ID by his API_ID
+     */
+    function getIDbyApiID($apiID)
+    {
+        return Game::where('api_id', $apiID)->firstOrFail()->id;
     }
 
     /**
@@ -82,7 +117,7 @@ class GameController extends Controller
             'Authorization' => env('IGDB_TOKEN')
         ])->withBody($body, 'text')->post('https://api.igdb.com/v4/games');
 
-        return $response;
+        return empty($response[0]) ? false : $response;
     }
 
     /**
@@ -147,5 +182,28 @@ class GameController extends Controller
             $file = file_get_contents($url);
             Storage::disk($disk)->put($filename, $file);
         }
+    }
+
+    /**
+     * Make UserGame from ID ad store it in DB
+     * 
+     * @return void
+     */
+    function makeUserGame($userID, $gameID, Request $request)
+    {
+        $userGame = new UserGame;
+        $userGame->user_id = $userID;
+        $userGame->game_id = $gameID;
+        $userGame->wanted = $request->wanted ? true : false;
+        $userGame->owned = $request->owned ? true : false;
+        $userGame->plus = $request->plus ? true : false;
+        $userGame->now = $request->now ? true : false;
+        $userGame->physical = $request->physical ? true : false;
+        $userGame->digital = $request->digital ? true : false;
+        $userGame->started = $request->started ? true : false;
+        $userGame->finished = $request->finished ? true : false;
+        $userGame->abandoned = $request->abandoned ? true : false;
+        $userGame->completed = $request->completed ? true : false;
+        $userGame->save();
     }
 }
