@@ -106,11 +106,10 @@ class GameController extends Controller
     {
         $fields = 'fields id, artworks.image_id, cover.image_id, first_release_date, 
         name, platforms, screenshots.image_id, summary, videos.video_id;';
-        $search = 'search "' . $name . '";';
-        $platforms = 'where platforms = (48);';
+        $filter = 'where (name ~ *"' . $name . '") & (platforms = (48));';
         $limit = 'limit 1;';
 
-        $body = $fields . $search . $platforms . $limit;
+        $body = $fields . $filter . $limit;
 
         $response = Http::withHeaders([
             'Client-ID' => env('IGDB_CLIENT_ID'),
