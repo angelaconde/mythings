@@ -3,20 +3,22 @@
 @section('content')
     <div class="container">
         <!-- TABS -->
-        <ul class="nav nav-tabs nav-fill nav-justified" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="games-tab" data-toggle="tab" href="#games" type="button" role="tab"
-                    aria-controls="games" aria-selected="true">Games</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" type="button" role="tab"
-                    aria-controls="books" aria-selected="false">Books</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="films-tab" data-toggle="tab" href="#films" type="button" role="tab"
-                    aria-controls="films" aria-selected="false">Films</a>
-            </li>
-        </ul>
+        <div class="container p-0" id="tabs">
+            <ul class="nav nav-tabs nav-fill nav-justified" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="games-tab" data-toggle="tab" href="#games"
+                        type="button" role="tab" aria-controls="games" aria-selected="true">Games</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" type="button" role="tab"
+                        aria-controls="books" aria-selected="false">Books</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="films-tab" data-toggle="tab" href="#films" type="button" role="tab"
+                        aria-controls="films" aria-selected="false">Films</a>
+                </li>
+            </ul>
+        </div>
         <div class="tab-content" id="myTabContent">
             <!-- GAMES TAB -->
             <div class="align-items-center tab-pane fade show active" id="games" role="tabpanel"
@@ -273,6 +275,13 @@
                         <!-- SIDEBAR END -->
                         <!-- GAME LIST -->
                         <div class="container-fluid col-12 col-md-8 border border-danger">
+                            @if ($games->isEmpty())
+                                <div class="jumbotron jumbotron-fluid m-2">
+                                    <div class="container">
+                                        <h2 class="text-center">You don't have any game yet.</h2>
+                                    </div>
+                                </div>
+                            @endif
                             @foreach ($games as $game)
                                 <!-- GAME -->
                                 <div class="row align-items-md-end">

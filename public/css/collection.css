@@ -20,10 +20,37 @@ body, .grey-bg {
     transform: rotate(90deg);
 }
 
-.nav-tabs .nav-item .nav-link {
-    background-color: darkgray;
+@media (min-width: 768px) {
+    #tabs a.nav-link.active:after {
+        content: "";
+        position: relative;
+        bottom: -50px;
+        left: -10%;
+        border: 15px solid transparent;
+        border-top-color: #343a40;
+    }
 }
 
-.nav-tabs .nav-item .nav-link.active {
-    background-color: pink;
+@media (max-width: 768px) {
+    #tabs a.nav-link.active:after {
+        content: "";
+        position: relative;
+        bottom: -50px;
+        left: -30%;
+        border: 15px solid transparent;
+        border-top-color: #343a40;
+    }
+}
+
+.tab-content {
+    border-top: 5px solid #343a40;
+    padding: 20px 0px;
+}
+
+#tabs a.nav-link:hover, #tabs a.nav-link:focus {
+    border: none;
+    background: #343a40;
+    color: #fff;
+    border-radius: 0;
+    transition: background 0.20s linear;
 }
