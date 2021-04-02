@@ -1,0 +1,29 @@
+body, .grey-bg {
+    background-color: #F5F7FA;
+}
+
+.white-bg {
+    background-color: white;
+}
+
+.border-grey {
+    border-style: solid;
+    border-width: thick;
+    border-color: #F5F7FA;
+}
+
+.card-header .fa {
+    transition: .3s transform ease-in-out;
+}
+
+.card-header .collapsed .fa {
+    transform: rotate(90deg);
+}
+
+.nav-tabs .nav-item .nav-link {
+    background-color: darkgray;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    background-color: pink;
+}
