@@ -26,7 +26,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'collection';
+    protected $redirectTo = 'authcheck';
 
     /**
      * Get the password reset validation rules.

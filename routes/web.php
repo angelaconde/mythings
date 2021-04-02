@@ -17,7 +17,9 @@ Route::get('/', 'LandingController@index')->name('landing');
 
 Auth::routes();
 
-Route::get('/collection', [App\Http\Controllers\HomeController::class, 'index'])->name('collection');
+Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
+
+Route::get('/collection', 'UserGameController@index')->name('collection');
 
 // FORMULARIO AÑADIR JUEGO
 Route::post('add', 'GameController@addGame')->name('add');

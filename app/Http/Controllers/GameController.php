@@ -24,7 +24,7 @@ class GameController extends Controller
         // Not found
         if (!$gameInfo) {
             $message = "WE COULDN'T FIND THIS GAME, SORRY!";
-            return view('collection', ['message' => $message]);
+            return redirect('collection')->with('message', $message);
             // Found
         } else {
             // Get his API id
@@ -40,14 +40,14 @@ class GameController extends Controller
                 // Is in collection
                 if ($alreadyInUserCollection) {
                     $message = "YOU ALREADY HAVE THIS GAME IN YOUR COLLECTION";
-                    return view('collection', ['message' => $message]);
+                    return redirect('collection')->with('message', $message);
                     // Isn't in collection
                 } else {
                     // Make UserGame and add to DB
                     $this->makeUserGame(Auth::user()->id, $gameID, $request);
                     // Return success message
                     $message = "GAME ADDED TO YOUR COLLECTION";
-                    return view('collection', ['message' => $message]);
+                    return redirect('collection')->with('message', $message);
                 }
                 // Isn't in DB
             } else {
@@ -63,7 +63,7 @@ class GameController extends Controller
                 $this->makeUserGame(Auth::user()->id, $game->id, $request);
                 // Return success message
                 $message = "GAME ADDED TO COLLECTION AND OUR DB";
-                return view('collection', ['message' => $message]);
+                return redirect('collection')->with('message', $message);
             }
         }
     }

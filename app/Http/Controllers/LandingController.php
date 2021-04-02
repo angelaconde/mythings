@@ -15,7 +15,7 @@ class LandingController extends Controller
     public function index()
     {
         if (Auth::user()) {
-            return view('collection');
+            return redirect('collection');
         } else {
             return view('info');
         }
