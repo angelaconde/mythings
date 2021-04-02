@@ -106,10 +106,11 @@ class GameController extends Controller
     {
         $fields = 'fields id, artworks.image_id, cover.image_id, first_release_date, 
         name, platforms, screenshots.image_id, summary, videos.video_id;';
-        $filter = 'where (name ~ *"' . $name . '") & (platforms = (48));';
+        $filter = 'where (name ~ "' . $name . '"*) & (platforms = (48));';
+        $sort = 'sort first_release_date asc;';
         $limit = 'limit 1;';
 
-        $body = $fields . $filter . $limit;
+        $body = $fields . $filter . $sort . $limit;
 
         $response = Http::withHeaders([
             'Client-ID' => env('IGDB_CLIENT_ID'),
