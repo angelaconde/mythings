@@ -75,3 +75,20 @@ body, .grey-bg {
     background: #343a40;
     color: #fff;
 }
+
+/* pagination */
+
+.pagination{
+    border: 1px solid #343a40;
+    font-weight: bold;
+}
+
+.pagination li .page-link {
+    color: #343a40;
+}
+
+.pagination li.active .page-link, .pagination li .page-link:hover {
+    background-color: #343a40;
+    border-color: #343a40;
+    color: #fff;
+}

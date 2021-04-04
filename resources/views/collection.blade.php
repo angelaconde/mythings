@@ -48,42 +48,42 @@
                                                 <div class="text-center">
                                                     <span class="font-weight-bold">Wanted:</span>
                                                     <h3 class="font-weight-bold">
-                                                        {{ $games->where('wanted', true)->count() }}</h3>
+                                                        {{ $stats->wanted }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
                                                     <span class="font-weight-bold">Owned:</span>
                                                     <h3 class="font-weight-bold">
-                                                        {{ $games->where('owned', true)->count() }}</h3>
+                                                        {{ $stats->owned }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
                                                     <span class="font-weight-bold">Started:</span>
                                                     <h3 class="font-weight-bold">
-                                                        {{ $games->where('started', true)->count() }}</h3>
+                                                        {{ $stats->started }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
                                                     <span class="font-weight-bold">Finished:</span>
                                                     <h3 class="font-weight-bold">
-                                                        {{ $games->where('finished', true)->count() }}</h3>
+                                                        {{ $stats->finished }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
                                                     <span class="font-weight-bold">Completed:</span>
                                                     <h3 class="font-weight-bold">
-                                                        {{ $games->where('completed', true)->count() }}</h3>
+                                                        {{ $stats->completed }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
                                                     <span class="font-weight-bold">Abandoned:</span>
                                                     <h3 class="font-weight-bold">
-                                                        {{ $games->where('abandoned', true)->count() }}</h3>
+                                                        {{ $stats->abandoned }}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-12 col-md-2 white-bg p-2 my-4 text-center">
                                     <h2 class="font-weight-bold">Total:</h2>
-                                    <h1 class="font-weight-bold">{{ count($games) }}</h1>
+                                    <h1 class="font-weight-bold">{{ $stats->total }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -330,8 +330,14 @@
                                 </div>
                                 <!-- GAME END -->
                             @endforeach
+                            <!-- PAGINATION -->
+                            <div class="d-flex">
+                                <div class="mx-auto">
+                                    {{ $games->links() }}
+                                </div>
+                            </div>
+                            <!-- PAGINATION END -->
                         </div>
-                        <!-- FIN DE JUEGOS -->
                     </div>
                 </div>
             </div>
