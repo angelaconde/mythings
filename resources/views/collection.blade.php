@@ -4,10 +4,10 @@
     <div class="container">
         <!-- TABS -->
         <div class="container p-0" id="tabs">
-            <ul class="nav nav-tabs nav-fill nav-justified" id="myTab" role="tablist">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="games-tab" data-toggle="tab" href="#games"
-                        type="button" role="tab" aria-controls="games" aria-selected="true">Games</a>
+                    <a class="nav-link active" id="games-tab" data-toggle="tab" href="#games" type="button" role="tab"
+                        aria-controls="games" aria-selected="true">Games</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" type="button" role="tab"
@@ -37,8 +37,8 @@
                             <!-- COLLAPSE END -->
                             <div class="row g-0 collapse show mx-3" id="collapse-stats" aria-labelledby="heading-stats">
                                 <div class="col-12 col-md-2 p-3 text-center">
-                                    <img src="https://via.placeholder.com/120"
-                                        class="rounded-circle border border-dark border-3" alt="...">
+                                    <img src="{{ asset('img/avatars\/' . Auth::user()->avatar) }}"
+                                        class="avatar rounded-circle border border-dark" alt="...">
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="card-body">
@@ -46,48 +46,52 @@
                                         <div class="row justify-content-center">
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
-                                                    <span class="fw-bold">Wanted:</span>
-                                                    <h3>278</h3>
+                                                    <span class="font-weight-bold">Wanted:</span>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ $games->where('wanted', true)->count() }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
-                                                    <span class="fw-bold">Owned:</span>
-                                                    <h3>278</h3>
+                                                    <span class="font-weight-bold">Owned:</span>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ $games->where('owned', true)->count() }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
-                                                    <span class="fw-bold">Started:</span>
-                                                    <h3>278</h3>
+                                                    <span class="font-weight-bold">Started:</span>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ $games->where('started', true)->count() }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
-                                                    <span class="fw-bold">Finished:</span>
-                                                    <h3>278</h3>
+                                                    <span class="font-weight-bold">Finished:</span>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ $games->where('finished', true)->count() }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
-                                                    <span class="fw-bold">Completed:</span>
-                                                    <h3>278</h3>
+                                                    <span class="font-weight-bold">Completed:</span>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ $games->where('completed', true)->count() }}</h3>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-2 white-bg h-100 p-2 border-grey">
                                                 <div class="text-center">
-                                                    <span class="fw-bold">Abandoned:</span>
-                                                    <h3>278</h3>
+                                                    <span class="font-weight-bold">Abandoned:</span>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ $games->where('abandoned', true)->count() }}</h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-2 white-bg p-2 my-4">
-                                    <div class="text-center">
-                                        <span class="fw-bold fs-4">Total:</span>
-                                        <h3 class="fs-1">278</h3>
-                                    </div>
+                                <div class="col-12 col-md-2 white-bg p-2 my-4 text-center">
+                                    <h2 class="font-weight-bold">Total:</h2>
+                                    <h1 class="font-weight-bold">{{ count($games) }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -297,16 +301,22 @@
                                                     <p class="card-text">{{ $game->summary }} </p>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <span class="badge bg-secondary w-100">Wanted</span>
-                                                            <span class="badge bg-success w-100">Owned</span>
+                                                            <span
+                                                                class="badge {{ $game->wanted ? 'bg-success' : 'bg-secondary' }} w-100">Wanted</span>
+                                                            <span
+                                                                class="badge {{ $game->owned ? 'bg-success' : 'bg-secondary' }} w-100">Owned</span>
                                                         </div>
                                                         <div class="col">
-                                                            <span class="badge bg-success w-100">Started</span>
-                                                            <span class="badge bg-secondary w-100">Finished</span>
+                                                            <span
+                                                                class="badge {{ $game->started ? 'bg-success' : 'bg-secondary' }} w-100">Started</span>
+                                                            <span
+                                                                class="badge {{ $game->finished ? 'bg-success' : 'bg-secondary' }} w-100">Finished</span>
                                                         </div>
                                                         <div class="col">
-                                                            <span class="badge bg-success w-100">Completed</span>
-                                                            <span class="badge bg-secondary w-100">Abandoned</span>
+                                                            <span
+                                                                class="badge {{ $game->completed ? 'bg-success' : 'bg-secondary' }} w-100">Completed</span>
+                                                            <span
+                                                                class="badge {{ $game->abandoned ? 'bg-success' : 'bg-secondary' }} w-100">Abandoned</span>
                                                         </div>
                                                         <div class="col-12 col-md-auto text-end p-2">
                                                             <button type="button" class="btn btn-primary">Edit</button>

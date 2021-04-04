@@ -12,6 +12,12 @@ body, .grey-bg {
     border-color: #F5F7FA;
 }
 
+.avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
 .card-header .fa {
     transition: .3s transform ease-in-out;
 }
@@ -20,16 +26,23 @@ body, .grey-bg {
     transform: rotate(90deg);
 }
 
+/* triangle desktop */
+
 @media (min-width: 768px) {
     #tabs a.nav-link.active:after {
         content: "";
+        width: 0;
+        height: 0;
         position: relative;
         bottom: -50px;
         left: -10%;
-        border: 15px solid transparent;
-        border-top-color: #343a40;
+        border-right: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-top: 15px solid #343a40;
     }
 }
+
+/* triangle mobile */
 
 @media (max-width: 768px) {
     #tabs a.nav-link.active:after {
@@ -42,15 +55,23 @@ body, .grey-bg {
     }
 }
 
+/* line */
+
 .tab-content {
     border-top: 5px solid #343a40;
     padding: 20px 0px;
 }
 
-#tabs a.nav-link:hover, #tabs a.nav-link:focus {
-    border: none;
+/* tabs */
+
+#tabs a.nav-link {
+    border: 2px solid #343a40;
+    color: #343a40;
+}
+
+/* active tab */
+
+#tabs a.nav-link:hover, #tabs a.nav-link:focus, #tabs a.nav-link.active {
     background: #343a40;
     color: #fff;
-    border-radius: 0;
-    transition: background 0.20s linear;
 }
