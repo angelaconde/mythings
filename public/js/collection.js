@@ -78,4 +78,13 @@ $(function () {
         $("#abandoned").prop("disabled", true);
     });
 
+    // DELETING GAME FROM COLLECTION
+    $('.deletebutton').on('click', function () {
+        let id = $(this).attr('data-id');
+        $('#id').val(id);
+        let name = $(this).attr('data-name');
+        $('#name').val(name);
+        $('#nametext').text(name);
+    });
+
 });

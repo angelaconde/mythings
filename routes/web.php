@@ -19,10 +19,13 @@ Auth::routes();
 
 Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
 
-Route::get('/collection', 'UserGameController@index')->name('collection');
 
-// FORMULARIO AÑADIR JUEGO
+// USER GAMES CRUD
 Route::post('add', 'GameController@addGame')->name('add');
+Route::get('/collection', 'UserGameController@index')->name('collection');
+// Route::update('updateusergame', 'UserGameController@update')->name('updateusergame');
+Route::delete('deleteusergame', 'UserGameController@delete')->name('deleteusergame');
+
 
 //OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
