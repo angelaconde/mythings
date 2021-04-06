@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/collection.js') }}" defer></script>
+    <script src="{{ asset('js/details.js') }}" defer></script>
+
 
 
     <!-- Fonts -->
@@ -21,6 +23,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/collection.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/details.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">

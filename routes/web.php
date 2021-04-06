@@ -26,6 +26,8 @@ Route::get('/collection', 'UserGameController@index')->name('collection');
 // Route::update('updateusergame', 'UserGameController@update')->name('updateusergame');
 Route::delete('deleteusergame', 'UserGameController@delete')->name('deleteusergame');
 
+// GAME DETAILS
+Route::get('/details/{id}', 'GameController@details')->name('details');
 
 //OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

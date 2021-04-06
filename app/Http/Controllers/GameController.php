@@ -134,8 +134,8 @@ class GameController extends Controller
         $game->first_release_date = $gameInfo[0]['first_release_date'] ?? strtotime("1984-01-09");
         $game->cover = $gameInfo[0]['cover']['image_id'] ?? "cover_not_found";
         $game->platform = 'PS4';
-        $game->screenshot_1 = $gameInfo[0]['artworks'][0]['image_id'] ?? "screenshot_not_found";
-        $game->screenshot_2 = $gameInfo[0]['artworks'][1]['image_id'] ?? "screenshot_not_found";
+        $game->screenshot_1 = $gameInfo[0]['screenshots'][0]['image_id'] ?? "screenshot_not_found";
+        $game->screenshot_2 = $gameInfo[0]['screenshots'][1]['image_id'] ?? "screenshot_not_found";
         $game->video = $gameInfo[0]['videos'][0]['video_id'] ?? "x7QhUL8NUK4";
         $game->save();
 
@@ -205,5 +205,14 @@ class GameController extends Controller
         $userGame->abandoned = $request->abandoned ? true : false;
         $userGame->completed = $request->completed ? true : false;
         $userGame->save();
+    }
+
+    /** Show details of Game by ID
+     * 
+     * @return void
+     */
+    function details($id){
+        $game = Game::findOrFail($id);
+        return view('details')->with('game', $game);
     }
 }
