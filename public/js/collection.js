@@ -83,83 +83,121 @@ $(function () {
         let name = $(this).attr('data-name');
         $('#edit-name').val(name);
         $('#edit-title').text(name);
+        // IF WANTED
         let wanted = $(this).attr('data-wanted');
         if (wanted == 1) {
             $('#edit-wanted').prop('checked', true);
             $('#edit-wanted').prop('disabled', false);
+            // IF NOT WANTED
         } else {
             $('#edit-wanted').prop('checked', false);
             $('#edit-wanted').prop('disabled', false);
         }
+        // IF OWNED
         let owned = $(this).attr('data-owned');
         if (owned == 1) {
             $('#edit-owned').prop('checked', true);
             $('#edit-owned').prop('disabled', false);
+            // IF PHYSICAL
+            let physical = $(this).attr('data-physical');
+            if (physical == 1) {
+                $('#edit-physical').prop('checked', true);
+                $('#edit-physical').prop('disabled', false);
+                // IF NOT PHYSICAL
+            } else {
+                $('#edit-physical').prop('checked', false);
+                $('#edit-physical').prop('disabled', false);
+            }
+            // IF DIGITAL
+            let digital = $(this).attr('data-digital');
+            if (digital == 1) {
+                $('#edit-digital').prop('checked', true);
+                $('#edit-digital').prop('disabled', false);
+                let plus = $(this).attr('data-plus');
+                // IF PLUS
+                if (plus == 1) {
+                    $('#edit-plus').prop('checked', true);
+                    $('#edit-plus').prop('disabled', false);
+                } else {
+                    $('#edit-plus').prop('checked', false);
+                    $('#edit-plus').prop('disabled', false);
+                }
+                // IF NOW
+                let now = $(this).attr('data-now');
+                if (now == 1) {
+                    $('#edit-now').prop('checked', true);
+                    $('#edit-now').prop('disabled', false);
+                } else {
+                    $('#edit-now').prop('checked', false);
+                    $('#edit-now').prop('disabled', false);
+                }
+                // IF NOT DIGITAL, UNCHECK AND DISABLE ALL CHILDREN
+            } else {
+                $('#edit-digital').prop('checked', false);
+                $('#edit-digital').prop('disabled', false);
+                $('#edit-plus').prop('checked', false);
+                $('#edit-plus').prop('disabled', true);
+                $('#edit-now').prop('checked', false);
+                $('#edit-now').prop('disabled', true);
+            }
+            // IF NOT OWNED, UNCHECK AND DISABLE ALL CHILDREN
         } else {
             $('#edit-owned').prop('checked', false);
             $('#edit-owned').prop('disabled', false);
-        }
-        let physical = $(this).attr('data-physical');
-        if (physical == 1) {
-            $('#edit-physical').prop('checked', true);
-            $('#edit-physical').prop('disabled', false);
-        } else {
             $('#edit-physical').prop('checked', false);
             $('#edit-physical').prop('disabled', true);
-        }
-        let digital = $(this).attr('data-digital');
-        if (digital == 1) {
-            $('#edit-digital').prop('checked', true);
-            $('#edit-digital').prop('disabled', false);
-        } else {
             $('#edit-digital').prop('checked', false);
             $('#edit-digital').prop('disabled', true);
-        }
-        let plus = $(this).attr('data-plus');
-        if (plus == 1) {
-            $('#edit-plus').prop('checked', true);
-            $('#edit-plus').prop('disabled', false);
-        } else {
             $('#edit-plus').prop('checked', false);
             $('#edit-plus').prop('disabled', true);
-        }
-        let now = $(this).attr('data-now');
-        if (now == 1) {
-            $('#edit-now').prop('checked', true);
-            $('#edit-now').prop('disabled', false);
-        } else {
             $('#edit-now').prop('checked', false);
             $('#edit-now').prop('disabled', true);
         }
+        // IF STARTED
         let started = $(this).attr('data-started');
         if (started == 1) {
             $('#edit-started').prop('checked', true);
             $('#edit-started').prop('disabled', false);
+            // IF FINISHED
+            let finished = $(this).attr('data-finished');
+            if (finished == 1) {
+                $('#edit-finished').prop('checked', true);
+                $('#edit-finished').prop('disabled', false);
+                // IF COMPLETED
+                let completed = $(this).attr('data-completed');
+                if (completed == 1) {
+                    $('#edit-completed').prop('checked', true);
+                    $('#edit-completed').prop('disabled', false);
+                    // IF NOT COMPLETED
+                } else {
+                    $('#edit-completed').prop('checked', false);
+                    $('#edit-completed').prop('disabled', true);
+                }
+                // IF NOT FINISHED, UNCHECK AND DISABLE CHILD
+            } else {
+                $('#edit-finished').prop('checked', false);
+                $('#edit-finished').prop('disabled', false);
+                $('#edit-completed').prop('checked', false);
+                $('#edit-completed').prop('disabled', true);
+            }
+            // IF ABANDONED
+            let abandoned = $(this).attr('data-abandoned');
+            if (abandoned == 1) {
+                $('#edit-abandoned').prop('checked', true);
+                $('#edit-abandoned').prop('disabled', false);
+                // IF NOT ABANDONED
+            } else {
+                $('#edit-abandoned').prop('checked', false);
+                $('#edit-abandoned').prop('disabled', false);
+            }
+            // IF NOT STARTED, UNCHECK AND DISABLE ALL CHILDREN
         } else {
             $('#edit-started').prop('checked', false);
             $('#edit-started').prop('disabled', false);
-        }
-        let finished = $(this).attr('data-finished');
-        if (finished == 1) {
-            $('#edit-finished').prop('checked', true);
-            $('#edit-finished').prop('disabled', false);
-        } else {
             $('#edit-finished').prop('checked', false);
             $('#edit-finished').prop('disabled', true);
-        }
-        let completed = $(this).attr('data-completed');
-        if (completed == 1) {
-            $('#edit-completed').prop('checked', true);
-            $('#edit-completed').prop('disabled', false);
-        } else {
             $('#edit-completed').prop('checked', false);
             $('#edit-completed').prop('disabled', true);
-        }
-        let abandoned = $(this).attr('data-abandoned');
-        if (abandoned == 1) {
-            $('#edit-abandoned').prop('checked', true);
-            $('#edit-abandoned').prop('disabled', false);
-        } else {
             $('#edit-abandoned').prop('checked', false);
             $('#edit-abandoned').prop('disabled', true);
         }
