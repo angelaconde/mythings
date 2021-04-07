@@ -83,6 +83,7 @@ class UserGameController extends Controller
         $userGame->abandoned = $request->abandoned ? true : false;
         $userGame->completed = $request->completed ? true : false;
         $userGame->save();
-        return redirect()->route('collection')
-            ->with('message', 'The game ' . $request->name . ' has been updated in your collection.');    }
+        return redirect()->back()
+            ->with('message', 'The game ' . $request->name . ' has been updated in your collection.');
+    }
 }
