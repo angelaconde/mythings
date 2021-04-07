@@ -13,13 +13,14 @@
                 <div class="container">
                     <div class="row">
                         <!-- SIDEBAR -->
-                        <div class="container-fluid col-12 col-md-2">
+                        <div class="container-fluid col-12 col-lg-2">
                             @include('components.addgame')
                             @include('components.filters')
                         </div>
                         <!-- END OF SIDEBAR -->
                         <!-- GAME LIST -->
                         <div class="container-fluid col-12 col-md-8">
+                            <p class="text-right">Showing {{ $games->total() }} results.</p>
                             @if ($games->isEmpty())
                                 @include('components.nogames')
                             @endif

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <button class="btn btn-dark btn-block my-2" data-toggle="modal" data-target="#add-game-modal">Add Game</button>
+    <button class="btn btn-dark btn-block mb-4" data-toggle="modal" data-target="#add-game-modal">Add Game</button>
 </div>
 <div id="add-game-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

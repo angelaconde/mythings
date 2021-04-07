@@ -11,13 +11,14 @@ use stdClass;
 class UserGameController extends Controller
 {
     /**
-     * Display a listing of the user's games.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a filtered listing of the user's games
+     * 
+     * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
         $pagination = env('PAGINATION_GAMES', 8);
+        $filters = $request->has('filters') ? $request->get('filters') : [];
         $userGames = UserGame::leftjoin('games', 'games.id', '=', 'user_games.game_id')
             ->select(
                 'games.name',
@@ -30,11 +31,18 @@ class UserGameController extends Controller
                 'user_games.*'
             )
             ->where('user_id', Auth::user()->id)
-            ->where('user_id', Auth::user()->id)
+            ->where(function ($query) use ($filters) {
+                if (isset($filters)) {
+                    foreach ($filters as $filter) {
+                        $query->where($filter, 1);
+                    }
+                }
+            })
             ->orderBy('name')
             ->paginate($pagination);
         $stats = $this->getStats();
-        return view('collection')->with(['games' => $userGames, 'stats' => $stats]);
+        $data = $request->all();
+        return view('collection')->with(['games' => $userGames, 'stats' => $stats, 'filters' => $filters, 'data' => $data]);
     }
 
     /**
@@ -58,6 +66,8 @@ class UserGameController extends Controller
 
     /**
      * Delete game from user's collection
+     * 
+     * @return void
      */
     public function delete(Request $request)
     {
@@ -68,8 +78,10 @@ class UserGameController extends Controller
 
     /**
      * Update game in user's collection
+     * 
+     * @return void
      */
-    function update(Request $request)
+    public function update(Request $request)
     {
         $userGame = UserGame::find($request->id);
         $userGame->wanted = $request->wanted ? true : false;
