@@ -19,11 +19,10 @@ Auth::routes();
 
 Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
 
-
 // USER GAMES CRUD
 Route::post('add', 'GameController@addGame')->name('add');
 Route::get('/collection', 'UserGameController@index')->name('collection');
-// Route::update('updateusergame', 'UserGameController@update')->name('updateusergame');
+Route::patch('updateusergame', 'UserGameController@update')->name('editusergame');
 Route::delete('deleteusergame', 'UserGameController@delete')->name('deleteusergame');
 
 // GAME DETAILS

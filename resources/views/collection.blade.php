@@ -34,6 +34,7 @@
                 <!-- END OF MAIN -->
             </div>
             @include('components.deletemodal')
+            @include('components.editgamemodal')
             <!-- END OF GAMES TAB -->
             <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">
                 <div class="jumbotron jumbotron-fluid m-2">

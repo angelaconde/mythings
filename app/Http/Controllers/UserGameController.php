@@ -63,6 +63,26 @@ class UserGameController extends Controller
     {
         UserGame::destroy($request->input('id'));
         return redirect()->route('collection')
-            ->with('message', 'The game ' . $request->input('name') . ' has been removed from your collection');
+            ->with('message', 'The game ' . $request->input('name') . ' has been removed from your collection.');
     }
+
+    /**
+     * Update game in user's collection
+     */
+    function update(Request $request)
+    {
+        $userGame = UserGame::find($request->id);
+        $userGame->wanted = $request->wanted ? true : false;
+        $userGame->owned = $request->owned ? true : false;
+        $userGame->plus = $request->plus ? true : false;
+        $userGame->now = $request->now ? true : false;
+        $userGame->physical = $request->physical ? true : false;
+        $userGame->digital = $request->digital ? true : false;
+        $userGame->started = $request->started ? true : false;
+        $userGame->finished = $request->finished ? true : false;
+        $userGame->abandoned = $request->abandoned ? true : false;
+        $userGame->completed = $request->completed ? true : false;
+        $userGame->save();
+        return redirect()->route('collection')
+            ->with('message', 'The game ' . $request->name . ' has been updated in your collection.');    }
 }

@@ -29,12 +29,23 @@
                                 class="badge {{ $game->abandoned ? 'bg-success' : 'bg-secondary' }} w-100">Abandoned</span>
                         </div>
                         <div class="col-12 col-lg-3 text-right pt-2 pr-3">
+                            <!-- DETAILS BUTTON -->
                             <a href="{{ route('details', $game->game_id) }}" class="btn btn-dark d-lg-none">View
                                 details</a>
-                            <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                            <a href="#" data-id={{ $game->id }} data-name="{{ $game->name }}"
+                            <!-- EDIT BUTTON -->
+                            <a href="#" data-id="{{ $game->id }}" data-name="{{ $game->name }}"
+                                data-wanted="{{ $game->wanted }}" data-owned="{{ $game->owned }}"
+                                data-physical="{{ $game->physical }}" data-digital="{{ $game->digital }}"
+                                data-plus="{{ $game->plus }}" data-now="{{ $game->now }}"
+                                data-started="{{ $game->started }}" data-finished="{{ $game->finished }}"
+                                data-completed="{{ $game->completed }}" data-abandoned="{{ $game->abandoned }}"
+                                class="btn btn-primary editgamebutton" data-toggle="modal"
+                                data-target="#edit-game-modal"><i class="fas fa-edit"></i></a>
+                            <!-- DELETE BUTTON -->
+                            <a href="#" data-id="{{ $game->id }}" data-name="{{ $game->name }}"
                                 class="btn btn-danger deletebutton" data-toggle="modal" data-target="#deleteModal"><i
                                     class="fas fa-trash-alt"></i></a>
+
                         </div>
                     </div>
                 </div>
