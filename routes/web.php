@@ -17,7 +17,12 @@ Route::get('/', 'LandingController@index')->name('landing');
 
 Auth::routes();
 
+// Auth
 Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
+
+// Usuarios
+Route::get('profile/{user}', 'UserController@view')->name('users.profile');
+Route::patch('users/updatename', 'UserController@updateName')->name('users.updatename');
 
 // USER GAMES CRUD
 Route::post('add', 'GameController@addGame')->name('add');
@@ -28,6 +33,6 @@ Route::delete('deleteusergame', 'UserGameController@delete')->name('deleteuserga
 // GAME DETAILS
 Route::get('/details/{id}', 'GameController@details')->name('details');
 
-//OAuth
+// OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('{provider}/callback', 'Auth\LoginController@handleProviderCallback');
