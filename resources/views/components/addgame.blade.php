@@ -18,7 +18,12 @@
                             <label for="title" class="col-3 col-form-label">Title</label>
                             <div class="col-9">
                                 <input id="title" name="title" placeholder="Title" type="text" required="required"
-                                    class="form-control">
+                                    class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
@@ -116,3 +121,10 @@
         </div>
     </div>
 </div>
+@if ($errors->any())
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            $('#add-game-modal').modal('show');
+        });
+    </script>
+@endif

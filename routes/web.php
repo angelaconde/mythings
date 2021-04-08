@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])-
 // Usuarios
 Route::get('profile/{user}', 'UserController@view')->name('users.profile');
 Route::patch('users/updatename', 'UserController@updateName')->name('users.updatename');
+Route::patch('users/avatar', 'UserController@uploadAvatar')->name('users.avatar');
+Route::patch('users/avatar/reset', 'UserController@resetAvatar')->name('users.avatar.reset');
 
 // USER GAMES CRUD
 Route::post('add', 'GameController@addGame')->name('add');
