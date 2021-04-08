@@ -20,7 +20,7 @@
                         <!-- END OF SIDEBAR -->
                         <!-- GAME LIST -->
                         <div class="container-fluid col-12 col-md-8">
-                            <p class="text-right">Showing {{ $games->total() }} results.</p>
+                            <p class="text-right">Showing {{ $games->count() }} of {{ $games->total() }} results.</p>
                             @if ($games->isEmpty())
                                 @include('components.nogames')
                             @endif
