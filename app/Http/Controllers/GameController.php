@@ -7,7 +7,7 @@ use Http;
 use App\Models\Game;
 use App\Models\UserGame;
 use Illuminate\Support\Facades\Storage;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
@@ -18,12 +18,15 @@ class GameController extends Controller
      */
     function addGame(Request $request)
     {
+        $request->validate([
+            'title' => ['required', 'string', 'min:4']
+        ]);
         // Look for game in API
         $name = $request->title;
         $gameInfo = $this->getGameInfoByNameFromAPI($name);
         // Not found
         if (!$gameInfo) {
-            $message = "WE COULDN'T FIND THIS GAME, SORRY!";
+            $message = "We couldn't find this game, sorry!";
             return redirect('collection')->with('message', $message);
             // Found
         } else {
@@ -39,14 +42,14 @@ class GameController extends Controller
                 $alreadyInUserCollection = $this->gameInUserCollection($gameID);
                 // Is in collection
                 if ($alreadyInUserCollection) {
-                    $message = "YOU ALREADY HAVE THIS GAME IN YOUR COLLECTION";
+                    $message = "You already have this game in your collection.";
                     return redirect('collection')->with('message', $message);
                     // Isn't in collection
                 } else {
                     // Make UserGame and add to DB
                     $this->makeUserGame(Auth::user()->id, $gameID, $request);
                     // Return success message
-                    $message = "GAME ADDED TO YOUR COLLECTION";
+                    $message = "The game was added to your collection.";
                     return redirect('collection')->with('message', $message);
                 }
                 // Isn't in DB
@@ -62,12 +65,11 @@ class GameController extends Controller
                 // Make UserGame and add to DB
                 $this->makeUserGame(Auth::user()->id, $game->id, $request);
                 // Return success message
-                $message = "GAME ADDED TO COLLECTION AND OUR DB";
+                $message = "The game was added to your collection.";
                 return redirect('collection')->with('message', $message);
             }
         }
     }
-
 
     /**
      * Look for the game in the database by API id.
@@ -211,7 +213,8 @@ class GameController extends Controller
      * 
      * @return void
      */
-    function details($id){
+    function details($id)
+    {
         $game = Game::findOrFail($id);
         return view('details')->with('game', $game);
     }
