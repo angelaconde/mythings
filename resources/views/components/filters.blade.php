@@ -43,7 +43,8 @@
             </div>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-dark m-2">Filter</button>
+            <button type="submit" class="btn btn-dark my-2">Filter</button>
+            <a href="{{ route('collection') }}" class="btn btn-dark my-2">Clear</a>
         </div>
     </form>
 </div>
