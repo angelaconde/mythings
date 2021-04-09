@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="card col-12 p-0 mb-3">
+    <div class="card col-12 p-0 mb-2">
         <div class="row g-0">
             <div class="col-3 col-lg-2 align-self-center justify-content-center">
                 <a href="{{ route('details', $game->game_id) }}">
