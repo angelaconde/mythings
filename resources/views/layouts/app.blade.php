@@ -68,9 +68,9 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
+                                <span id="user-id" hidden>{{ Auth::user()->id }}</span>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('users.profile', Auth::user()) }}">My
+                                    <a class="dropdown-item" href="{{ route('users.profile', Auth::user()->id) }}">My
                                         profile</a>
                                     <a class="dropdown-item" href="#">My public page</a>
                                     <div class="dropdown-divider"></div>
