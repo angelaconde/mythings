@@ -270,3 +270,18 @@ $(function () {
     });
 
 });
+
+// VALIDATION
+function validateAdd() {
+    $('#val-error-title').remove();
+    $('#title').removeClass('is-invalid');
+    var title = $('#title').val();
+    if (title.length < 3) {
+        $('#title').addClass('is-invalid');
+        $('#title').after('<span id="val-error-title"></span');
+        $('#val-error-title').attr('role', 'alert');
+        $('#val-error-title').attr('class', 'invalid-feedback d-block');
+        $('#val-error-title').html('<strong>The title must be at least 3 characters.</strong>')
+        return false;
+    }
+}

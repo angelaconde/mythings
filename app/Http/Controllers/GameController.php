@@ -19,7 +19,7 @@ class GameController extends Controller
     function addGame(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'string', 'min:4']
+            'title' => ['required', 'string', 'min:3']
         ]);
         // Look for game in API
         $name = $request->title;

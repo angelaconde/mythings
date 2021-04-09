@@ -12,13 +12,13 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form method="POST" id="add-form" action="{{ route('add') }}">
+                    <form method="POST" id="add-form" action="{{ route('add') }}" onSubmit="return validateAdd();">
                         @csrf
                         <div class="form-group row">
                             <label for="title" class="col-3 col-form-label">Title</label>
                             <div class="col-9">
                                 <input id="title" name="title" placeholder="Title" type="text" required="required"
-                                    class="form-control @error('title') is-invalid @enderror">
+                                    class="form-control title @error('title') is-invalid @enderror">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
