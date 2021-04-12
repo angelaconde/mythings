@@ -7,16 +7,12 @@
             <!-- GAMES TAB -->
             <div class="align-items-center tab-pane fade show active" id="games" role="tabpanel"
                 aria-labelledby="games-tab">
-                @include('components.stats')
                 @include('components.message')
                 <!-- MAIN -->
                 <div class="container">
                     <div class="row">
                         <!-- SIDEBAR -->
-                        <div class="container-fluid col-12 col-lg-2">
-                            @include('components.addgame')
-                            @include('components.filters')
-                        </div>
+                        @include('components.sidebar')
                         <!-- END OF SIDEBAR -->
                         <!-- GAME LIST -->
                         <div class="container-fluid col-12 col-md-8">

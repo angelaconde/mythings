@@ -78,7 +78,7 @@ body, .grey-bg {
 
 /* pagination */
 
-.pagination{
+.pagination {
     border: 1px solid #343a40;
     font-weight: bold;
 }
@@ -91,4 +91,14 @@ body, .grey-bg {
     background-color: #343a40;
     border-color: #343a40;
     color: #fff;
+}
+
+/* sidebar */
+
+@media (min-width: 768px) {
+    .collapse.dont-collapse {
+        display: block;
+        height: auto !important;
+        visibility: visible;
+    }
 }

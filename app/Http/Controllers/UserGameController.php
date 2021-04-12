@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\UserGame;
-use App\Models\Game;
 use stdClass;
 
 class UserGameController extends Controller
@@ -45,9 +44,19 @@ class UserGameController extends Controller
             })
             ->orderBy('name')
             ->paginate($pagination);
-        $stats = $this->getStats();
         $data = $request->all();
-        return view('collection')->with(['games' => $userGames, 'stats' => $stats, 'filters' => $filters, 'data' => $data]);
+        return view('collection')->with(['games' => $userGames, 'filters' => $filters, 'data' => $data]);
+    }
+
+    /**
+     * Display user's games stats
+     * 
+     * @return void
+     */
+    public function showStats()
+    {
+        $stats = $this->getStats();
+        return view('stats')->with(['stats' => $stats]);
     }
 
     /**

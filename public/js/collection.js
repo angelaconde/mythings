@@ -1,23 +1,4 @@
 $(function () {
-    // HIDING STATS BY DEFAULT ON SMALL SCREENS
-    if (window.matchMedia('(max-width: 1200px)').matches) {
-        $('#collapse-stats').collapse();
-    }
-
-    // REMEMBERING STATS COLLAPSE
-    let id = $('#user-id').text();
-
-    $("#collapse-stats").on('shown.bs.collapse', function () {
-        sessionStorage.setItem("collapse-stats-" + id, "not collapsed")
-    });
-    $("#collapse-stats").on('hidden.bs.collapse', function () {
-        sessionStorage.setItem("collapse-stats-" + id, "collapsed")
-    });
-
-    if (sessionStorage.getItem('collapse-stats-' + id) == "collapsed") {
-        $('#collapse-stats').collapse();
-    }
-
     // FOCUSING CURSOR
     $('#add-game-modal').on('shown.bs.modal', function () {
         $('#title').trigger('focus');
