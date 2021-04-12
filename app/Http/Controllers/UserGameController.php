@@ -10,6 +10,11 @@ use stdClass;
 
 class UserGameController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a filtered listing of the user's games
      * 

@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Add game to user games table and games table if needed.
      * 
