@@ -33,7 +33,6 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img/app/logo_icon_empty.png') }}" width="30" height="30"
                         class="d-inline-block align-top border border-white rounded" alt="">
-                    {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -44,7 +43,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('collection') ? 'active' : '' }}"
+                                href="{{ route('collection') }}">My collection</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('stats') ? 'active' : '' }}"
+                                href="{{ route('stats') }}">My stats</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,7 +81,7 @@
                                     <a class="dropdown-item" href="#">My public page</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

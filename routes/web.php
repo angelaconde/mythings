@@ -21,19 +21,22 @@ Auth::routes();
 // Auth
 Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
 
-// Usuarios
+// Users
 Route::get('profile/{user}', 'UserController@view')->name('users.profile');
 Route::patch('users/updatename', 'UserController@updateName')->name('users.updatename');
 Route::patch('users/avatar', 'UserController@uploadAvatar')->name('users.avatar');
 Route::patch('users/avatar/reset', 'UserController@resetAvatar')->name('users.avatar.reset');
 
-// USER GAMES CRUD
+// User's games CRUD
 Route::post('add', 'GameController@addGame')->name('add');
 Route::get('/collection', 'UserGameController@index')->name('collection');
 Route::patch('updateusergame', 'UserGameController@update')->name('editusergame');
 Route::delete('deleteusergame', 'UserGameController@delete')->name('deleteusergame');
 
-// GAME DETAILS
+// User's games stats
+Route::get('stats', 'UserGameController@showStats')->name('stats');
+
+// Game details
 Route::get('/details/{id}', 'GameController@details')->name('details');
 
 // OAuth
