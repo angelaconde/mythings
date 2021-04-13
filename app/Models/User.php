@@ -21,6 +21,7 @@ class User extends Authenticatable
         'avatar',
         'email',
         'password',
+        'wishlist',
         'provider',
         'provider_id'
     ];
