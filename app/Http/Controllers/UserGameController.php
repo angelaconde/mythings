@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserGame;
+use App\Models\User;
 use stdClass;
 
 class UserGameController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['showWishlist']]);
     }
 
     /**
@@ -76,6 +77,56 @@ class UserGameController extends Controller
         $stats->abandoned = $userGames->where('abandoned', true)->count();
         $stats->total = $userGames->count();
         return $stats;
+    }
+
+    /**
+     * Show user's wishlist
+     * 
+     * @return void
+     */
+    public function showWishlist(Request $request, $id)
+    {
+        if ($this->isWishlistPublic($id)) {
+            $pagination = env('PAGINATION_WISHLIST', 12);
+            $filters = ['wanted'];
+            $userGames = UserGame::leftjoin('games', 'games.id', '=', 'user_games.game_id')
+                ->select(
+                    'games.name',
+                    'games.summary',
+                    'games.cover',
+                    'games.platform',
+                    'games.screenshot_1',
+                    'games.screenshot_2',
+                    'games.video',
+                    'user_games.*'
+                )
+                ->where('user_id', $id)
+                ->where(function ($query) use ($filters) {
+                    if (isset($filters)) {
+                        foreach ($filters as $filter) {
+                            $query->where($filter, 1);
+                        }
+                    }
+                })
+                ->orderBy('name')
+                ->paginate($pagination);
+            $data = $request->all();
+            $avatar = User::find($id)->avatar;
+            $name = User::find($id)->name;
+            return view('wishlist')->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'avatar' => $avatar, 'name' => $name]);
+        } else {
+            return view('nowishlist');
+        }
+    }
+
+    /**
+     * Get whether user's wishlist is public
+     *
+     * @return boolean
+     */
+    public function isWishlistPublic($id)
+    {
+        return User::find($id)->wishlist;
     }
 
     /**

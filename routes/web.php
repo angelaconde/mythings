@@ -36,6 +36,11 @@ Route::delete('deleteusergame', 'UserGameController@delete')->name('deleteuserga
 // User's games stats
 Route::get('stats', 'UserGameController@showStats')->name('stats');
 
+// User's wishlist
+Route::get('wishlist/{id}', 'UserGameController@showWishlist')->name('wishlist');
+Route::patch('wishlist/private', 'UserController@makeWishlistPrivate')->name('wishlist.private');
+Route::patch('wishlist/public', 'UserController@makeWishlistPublic')->name('wishlist.public');
+
 // Game details
 Route::get('/details/{id}', 'GameController@details')->name('details');
 

@@ -93,4 +93,32 @@ class UserController extends Controller
 
         return redirect()->back()->with('message', 'Your avatar has been changed successfully.');
     }
+
+    /**
+     * Changes the user's wishlist to private
+     * 
+     * @return void
+     */
+    public function makeWishlistPrivate()
+    {
+        $user = User::find(Auth::user()->id);
+        $user->wishlist = false;
+        $user->save();
+
+        return redirect()->back()->with('message', 'Your wishlist is now private.');
+    }
+
+    /**
+     * Changes the user's wishlist to public
+     * 
+     * @return void
+     */
+    public function makeWishlistPublic()
+    {
+        $user = User::find(Auth::user()->id);
+        $user->wishlist = true;
+        $user->save();
+
+        return redirect()->back()->with('message', 'Your wishlist is now public.');
+    }
 }

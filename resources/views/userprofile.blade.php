@@ -56,6 +56,40 @@
                     data-toggle="modal" data-target="#edit-name-modal">Change name</a>
             </div>
         </div>
+        <div class="row mt-2">
+            <!-- WISHLIST -->
+            <div class="col-12 col-lg-3 p-3 text-center">
+                <h4>Wishlist: </h4>
+            </div>
+            <div class="col-12 col-lg-9 py-2 px-3">
+                @if (Auth::user()->wishlist)
+                    <h2>Your wishlist is currently public:</h2>
+                    <a href="{{ url('wishlist/' . Auth::user()->id) }}">
+                        <h3>{{ url('wishlist/' . Auth::user()->id) }}</h3>
+                    </a>
+                    <form action="{{ route('wishlist.private') }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <button type="submit" class="btn btn-dark btn-sm">Make it private</button>
+                            </div>
+                        </div>
+                    </form>
+                @else
+                    <h2>Your wishlist is currently private.</h2>
+                    <form action="{{ route('wishlist.public') }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <button type="submit" class="btn btn-dark btn-sm">Make it public</button>
+                            </div>
+                        </div>
+                    </form>
+                @endif
+            </div>
+        </div>
         <!-- NAME MODAL -->
         <div id="edit-name-modal" class="modal text-left" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -97,6 +131,7 @@
                 document.addEventListener("DOMContentLoaded", function(event) {
                     $('#edit-name-modal').modal('show');
                 });
+
             </script>
         @endif
     </div>
