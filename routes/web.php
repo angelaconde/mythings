@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Landing
 Route::get('/', 'LandingController@index')->name('landing');
 
-Auth::routes();
-
 // Auth
+Auth::routes(['verify' => true]);
 Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
 
 // Users

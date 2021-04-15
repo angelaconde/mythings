@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -80,6 +80,7 @@ class LoginController extends Controller
         return User::create([
             'name'     => $user->user['given_name'],
             'email'    => $user->email,
+            'email_verified_at' => now(),
             'provider' => $provider,
             'provider_id' => $user->id
         ]);

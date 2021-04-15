@@ -12,7 +12,7 @@ class UserGameController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['showWishlist']]);
+        $this->middleware(['auth', 'verified'], ['except' => ['showWishlist']]);
     }
 
     /**
