@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Http;
+use Illuminate\Support\Facades\Http;
 use App\Models\Game;
 use App\Models\UserGame;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 class GameController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -59,8 +61,11 @@ class GameController extends Controller
                 }
                 // Isn't in DB
             } else {
-                // If not in DB add to DB and save cover and images
-                $game = $this->makeGame($gameInfo);
+                // If not in DB
+                // Get HLTB
+                $hltb = $this->getHLTB($gameInfo[0]['name']);
+                // Add to DB and save cover and images
+                $game = $this->makeGame($gameInfo, $hltb);
                 $this->storeImage($game->cover, 'coverBig');
                 $this->storeImage($game->cover, 'coverSmall');
                 $this->storeImage($game->screenshot_1, 'screenshot');
@@ -132,7 +137,7 @@ class GameController extends Controller
      * 
      * @return Game
      */
-    function makeGame($gameInfo)
+    function makeGame($gameInfo, $hltb)
     {
         $game = new Game;
         $game->api_id = $gameInfo[0]['id'];
@@ -144,6 +149,8 @@ class GameController extends Controller
         $game->screenshot_1 = $gameInfo[0]['screenshots'][0]['image_id'] ?? "screenshot_not_found";
         $game->screenshot_2 = $gameInfo[0]['screenshots'][1]['image_id'] ?? "screenshot_not_found";
         $game->video = $gameInfo[0]['videos'][0]['video_id'] ?? "x7QhUL8NUK4";
+        $game->hltb_story = $hltb ? $hltb['Time Main Story'] : "--";
+        $game->hltb_completionist = $hltb ? $hltb['Time Completionist'] : "--";
         $game->save();
 
         return $game;
@@ -222,5 +229,48 @@ class GameController extends Controller
     {
         $game = Game::findOrFail($id);
         return view('details')->with('game', $game);
+    }
+
+    /**
+     * Get HLTB by game name
+     * 
+     * @return array
+     */
+    public function getHLTB($name)
+    {
+        $client = new Client([
+            'referer' => true,
+            'headers' => [
+                'User-Agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2 GTB5'
+            ],
+        ]);
+
+        $response = $client->request('POST', "https://howlongtobeat.com/search_results?page=1", ['form_params' => [
+            'queryString' => $name,
+            't' => 'games'
+        ]]);
+
+        $result = (string)$response->getBody();
+
+        $game = [];
+
+        $crawler = new Crawler($result);
+
+        $filter = $crawler->filter('.back_darkish ');
+
+        foreach ($filter as $i => $domElement) {
+            $_crawler = new Crawler($domElement);
+            $game = [
+                'Title' => $_crawler->filter('.search_list_details h3')->text(),
+                'Time Main Story' => $_crawler->filter('.search_list_details_block [class^=search_list_tidbit]:nth-child(2)')->text(),
+                'Time Completionist' => $_crawler->filter('.search_list_details_block [class^=search_list_tidbit]:nth-child(6)')->text(),
+            ];
+            break;
+        }
+
+        if (empty($game)) {
+            return false;
+        }
+        return $game;
     }
 }

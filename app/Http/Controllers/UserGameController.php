@@ -33,6 +33,8 @@ class UserGameController extends Controller
                 'games.screenshot_1',
                 'games.screenshot_2',
                 'games.video',
+                'games.hltb_story',
+                'games.hltb_completionist',
                 'user_games.*'
             )
             ->where('user_id', Auth::user()->id)

@@ -23,7 +23,9 @@ class Game extends Model
         'platform',
         'screenshot_1',
         'screenshot_2',
-        'video'
+        'video',
+        'hltb_story',
+        'hltb_completionist'
     ];
 
     /**
