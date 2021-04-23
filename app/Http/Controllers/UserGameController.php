@@ -117,7 +117,8 @@ class UserGameController extends Controller
             $data = $request->all();
             $avatar = User::find($id)->avatar;
             $name = User::find($id)->name;
-            return view('wishlist')->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'avatar' => $avatar, 'name' => $name]);
+            return view('wishlist')
+            ->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'avatar' => $avatar, 'name' => $name]);
         } else {
             return view('nowishlist');
         }
@@ -141,8 +142,9 @@ class UserGameController extends Controller
     public function delete(Request $request)
     {
         UserGame::destroy($request->input('id'));
-        return redirect()->route('collection')
-            ->with('message', 'The game ' . $request->input('name') . ' has been removed from your collection.');
+        return redirect()->back()
+            ->with('message', 'The game ' . $request->input('name') . ' has been removed from your collection.')
+            ->with($request->except('_token'));
     }
 
     /**
@@ -165,6 +167,7 @@ class UserGameController extends Controller
         $userGame->completed = $request->completed ? true : false;
         $userGame->save();
         return redirect()->back()
-            ->with('message', 'The game ' . $request->name . ' has been updated in your collection.');
+            ->with('message', 'The game ' . $request->name . ' has been updated in your collection.')
+            ->with($request->except('_token'));
     }
 }

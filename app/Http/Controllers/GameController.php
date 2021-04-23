@@ -34,7 +34,7 @@ class GameController extends Controller
         // Not found
         if (!$gameInfo) {
             $message = "We couldn't find this game, sorry!";
-            return redirect('collection')->with('message', $message);
+            return redirect()->back()->with('message', $message)->with($request->except('_token'));
             // Found
         } else {
             // Get his API id
@@ -50,14 +50,14 @@ class GameController extends Controller
                 // Is in collection
                 if ($alreadyInUserCollection) {
                     $message = "You already have this game in your collection.";
-                    return redirect('collection')->with('message', $message);
+                    return redirect()->back()->with('message', $message)->with($request->except('_token'));
                     // Isn't in collection
                 } else {
                     // Make UserGame and add to DB
                     $this->makeUserGame(Auth::user()->id, $gameID, $request);
                     // Return success message
                     $message = "The game was added to your collection.";
-                    return redirect('collection')->with('message', $message);
+                    return redirect()->back()->with('message', $message)->with($request->except('_token'));
                 }
                 // Isn't in DB
             } else {
@@ -76,7 +76,7 @@ class GameController extends Controller
                 $this->makeUserGame(Auth::user()->id, $game->id, $request);
                 // Return success message
                 $message = "The game was added to your collection.";
-                return redirect('collection')->with('message', $message);
+                return redirect()->back()->with('message', $message)->with($request->except('_token'));
             }
         }
     }
