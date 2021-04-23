@@ -1,4 +1,4 @@
-<div class="border border-dark rounded">
+<div class="border border-dark rounded mb-3">
     <form action="{{ route('collection') }}" method="GET">
         <input type="hidden" name="sort" value="{{ request('sort') ?? 'name' }}">
         <input type="hidden" name="order" value="{{ request('order') ?? 'asc' }}">

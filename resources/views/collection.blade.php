@@ -21,7 +21,7 @@
                                     @include('components.sort')
                                 </div>
                                 <div class="col">
-                                    <p class="text-right">Showing {{ $games->count() }} of {{ $games->total() }}
+                                    <p class="text-right m-1">Showing {{ $games->count() }} of {{ $games->total() }}
                                         results.</p>
                                 </div>
                             </div>
