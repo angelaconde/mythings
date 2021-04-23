@@ -24,6 +24,8 @@ class UserGameController extends Controller
     {
         $pagination = env('PAGINATION_GAMES', 8);
         $filters = $request->has('filters') ? $request->get('filters') : [];
+        $sort = $request->has('sort') ? $request->get('sort') : 'name';
+        $order = $request->has('order') ? $request->get('order') : 'asc';
         $userGames = UserGame::leftjoin('games', 'games.id', '=', 'user_games.game_id')
             ->select(
                 'games.name',
@@ -45,7 +47,7 @@ class UserGameController extends Controller
                     }
                 }
             })
-            ->orderBy('name')
+            ->orderBy($sort, $order)
             ->paginate($pagination);
         $data = $request->all();
         return view('collection')->with(['games' => $userGames, 'filters' => $filters, 'data' => $data]);

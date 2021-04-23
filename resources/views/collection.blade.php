@@ -16,7 +16,15 @@
                         <!-- END OF SIDEBAR -->
                         <!-- GAME LIST -->
                         <div class="container-fluid col-12 col-md-8">
-                            <p class="text-right">Showing {{ $games->count() }} of {{ $games->total() }} results.</p>
+                            <div class="row">
+                                <div class="col">
+                                    @include('components.sort')
+                                </div>
+                                <div class="col">
+                                    <p class="text-right">Showing {{ $games->count() }} of {{ $games->total() }}
+                                        results.</p>
+                                </div>
+                            </div>
                             @if ($games->isEmpty())
                                 @include('components.nogames')
                             @endif

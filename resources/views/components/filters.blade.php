@@ -1,5 +1,7 @@
 <div class="border border-dark rounded">
     <form action="{{ route('collection') }}" method="GET">
+        <input type="hidden" name="sort" value="{{ request('sort') ?? 'name' }}">
+        <input type="hidden" name="order" value="{{ request('order') ?? 'asc' }}">
         <div class="px-4 py-2">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="filters[]" value="wanted" aria-label="wanted"
@@ -44,7 +46,8 @@
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-dark my-2">Filter</button>
-            <a href="{{ route('collection') }}" class="btn btn-dark my-2">Clear</a>
+            <a href="{{ route('collection') }}{{ request('sort') ? '?sort=' . request('sort') : '?sort=name' }}{{ request('order') ? '&order=' . request('order') : '&order=asc' }}"
+                class="btn btn-dark my-2">Clear</a>
         </div>
     </form>
 </div>
