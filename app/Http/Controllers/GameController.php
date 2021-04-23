@@ -150,9 +150,10 @@ class GameController extends Controller
         $game->screenshot_2 = $gameInfo[0]['screenshots'][1]['image_id'] ?? "screenshot_not_found";
         $game->video = $gameInfo[0]['videos'][0]['video_id'] ?? "x7QhUL8NUK4";
         $game->hltb_story = $hltb ? $hltb['Time Main Story'] : "--";
+        $game->hltb_story_mins = $hltb ? $hltb['Time Main Story Minutes'] : null;
         $game->hltb_completionist = $hltb ? $hltb['Time Completionist'] : "--";
+        $game->hltb_completionist_mins = $hltb ? $hltb['Time Completionist Minutes'] : null;
         $game->save();
-
         return $game;
     }
 
@@ -238,26 +239,24 @@ class GameController extends Controller
      */
     public function getHLTB($name)
     {
+        // Set client
         $client = new Client([
             'referer' => true,
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2 GTB5'
             ],
         ]);
-
+        // Get response to request
         $response = $client->request('POST', "https://howlongtobeat.com/search_results?page=1", ['form_params' => [
             'queryString' => $name,
             't' => 'games'
         ]]);
-
+        // Get body from response
         $result = (string)$response->getBody();
-
+        // Crawl the times and add to array
         $game = [];
-
         $crawler = new Crawler($result);
-
         $filter = $crawler->filter('.back_darkish ');
-
         foreach ($filter as $i => $domElement) {
             $_crawler = new Crawler($domElement);
             $game = [
@@ -267,10 +266,39 @@ class GameController extends Controller
             ];
             break;
         }
-
         if (empty($game)) {
             return false;
+        } else {
+            // Convert times and add to array
+            $game['Time Main Story Minutes'] = $this->convertStringToMinutes($game['Time Main Story']);
+            $game['Time Completionist Minutes'] = $this->convertStringToMinutes($game['Time Completionist']);
+            return $game;
         }
-        return $game;
+    }
+
+    /**
+     * Convert hours to minutes
+     * 
+     * @return integer
+     */
+    function convertStringToMinutes($string)
+    {
+        $minutes = 0;
+        // Check if hours or minutes
+        if (str_contains($string, 'Min')) {
+            // Clean string and add to minutes
+            $cleanedString = intval($string);
+            $minutes = $minutes + $cleanedString;
+        } else if (str_contains($string, 'Hour')) {
+            // If ½, add 30 minutes
+            if (str_contains($string, '½')) {
+                $minutes = $minutes + 30;
+            }
+            // Clean string
+            $cleanedString = intval($string);
+            // Convert hours to minutes and add to minutes
+            $minutes = $minutes + ($cleanedString * 60);
+        }
+        return $minutes;
     }
 }

@@ -25,7 +25,9 @@ class Game extends Model
         'screenshot_2',
         'video',
         'hltb_story',
-        'hltb_completionist'
+        'hltb_story_mins',
+        'hltb_completionist',
+        'hltb_completionist_mins'
     ];
 
     /**
@@ -45,5 +47,4 @@ class Game extends Model
     protected $casts = [
         'first_release_date' => 'date',
     ];
-
 }

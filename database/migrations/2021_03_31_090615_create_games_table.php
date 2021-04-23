@@ -26,7 +26,9 @@ class CreateGamesTable extends Migration
             $table->string('screenshot_2')->nullable();
             $table->string('video')->nullable();
             $table->string('hltb_story')->nullable();
+            $table->integer('hltb_story_mins')->nullable();
             $table->string('hltb_completionist')->nullable();
+            $table->integer('hltb_completionist_mins')->nullable();
         });
     }
 
