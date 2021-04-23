@@ -9,6 +9,7 @@ use App\Models\UserGame;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
+use InvalidArgumentException;
 use Symfony\Component\DomCrawler\Crawler;
 
 class GameController extends Controller
@@ -259,11 +260,17 @@ class GameController extends Controller
         $filter = $crawler->filter('.back_darkish ');
         foreach ($filter as $i => $domElement) {
             $_crawler = new Crawler($domElement);
-            $game = [
-                'Title' => $_crawler->filter('.search_list_details h3')->text(),
-                'Time Main Story' => $_crawler->filter('.search_list_details_block [class^=search_list_tidbit]:nth-child(2)')->text(),
-                'Time Completionist' => $_crawler->filter('.search_list_details_block [class^=search_list_tidbit]:nth-child(6)')->text(),
-            ];
+            $game['Title'] = $_crawler->filter('.search_list_details h3')->text();
+            try {
+                $game['Time Main Story'] = $_crawler->filter('.search_list_details_block [class^=search_list_tidbit]:nth-child(2)')->text();
+            } catch (InvalidArgumentException $e) {
+                $game['Time Main Story'] = '--';
+            }
+            try {
+                $game['Time Completionist'] = $_crawler->filter('.search_list_details_block [class^=search_list_tidbit]:nth-child(6)')->text();
+            } catch (InvalidArgumentException $e) {
+                $game['Time Completionist'] = '--';
+            }
             break;
         }
         if (empty($game)) {
