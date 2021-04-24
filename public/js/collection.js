@@ -171,7 +171,7 @@ $(function () {
                     // IF NOT COMPLETED
                 } else {
                     $('#edit-completed').prop('checked', false);
-                    $('#edit-completed').prop('disabled', true);
+                    $('#edit-completed').prop('disabled', false);
                 }
                 // IF NOT FINISHED, UNCHECK AND DISABLE CHILD
             } else {
