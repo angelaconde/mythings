@@ -20,6 +20,18 @@
         @if (str_contains(url()->full(), 'updated') && str_contains(url()->full(), 'asc'))
             Updated (New to Old)
         @endif
+        @if (str_contains(url()->full(), 'story') && str_contains(url()->full(), 'asc'))
+            Shortest story
+        @endif
+        @if (str_contains(url()->full(), 'story') && str_contains(url()->full(), 'desc'))
+            Longest story
+        @endif
+        @if (str_contains(url()->full(), 'completionist') && str_contains(url()->full(), 'asc'))
+            Shortest completion
+        @endif
+        @if (str_contains(url()->full(), 'completionist') && str_contains(url()->full(), 'desc'))
+            Longest completion
+        @endif
     </button>
     <div class="dropdown-menu" aria-labelledby="sortMenuButton">
         @if (request('filters'))
@@ -44,5 +56,17 @@
         <a class="dropdown-item"
             href="{{ route('collection') }}?sort=updated_at&order=asc{{ $filterQuery ?? '' }}">Updated (Old to
             New)</a>
+        <a class="dropdown-item"
+            href="{{ route('collection') }}?sort=hltb_story_mins&order=asc{{ $filterQuery ?? '' }}">Shortest
+            story</a>
+        <a class="dropdown-item"
+            href="{{ route('collection') }}?sort=hltb_story_mins&order=desc{{ $filterQuery ?? '' }}">Longest
+            story</a>
+        <a class="dropdown-item"
+            href="{{ route('collection') }}?sort=hltb_completionist_mins&order=asc{{ $filterQuery ?? '' }}">Shortest
+            completion</a>
+        <a class="dropdown-item"
+            href="{{ route('collection') }}?sort=hltb_completionist_mins&order=desc{{ $filterQuery ?? '' }}">Longest
+            completion</a>
     </div>
 </div>
