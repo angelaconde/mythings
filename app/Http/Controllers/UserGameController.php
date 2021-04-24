@@ -26,6 +26,7 @@ class UserGameController extends Controller
         $filters = $request->has('filters') ? $request->get('filters') : [];
         $sort = $request->has('sort') ? $request->get('sort') : 'name';
         $order = $request->has('order') ? $request->get('order') : 'asc';
+        $search = ($request->has('search') ?? $request->get('search') != '') ? $request->get('search') : '';
         $userGames = UserGame::leftjoin('games', 'games.id', '=', 'user_games.game_id')
             ->select(
                 'games.name',
@@ -36,10 +37,15 @@ class UserGameController extends Controller
                 'games.screenshot_2',
                 'games.video',
                 'games.hltb_story',
+                'games.hltb_story_mins',
                 'games.hltb_completionist',
+                'games.hltb_completionist_mins',
                 'user_games.*'
             )
             ->where('user_id', Auth::user()->id)
+            ->whereHas('game', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
             ->where(function ($query) use ($filters) {
                 if (isset($filters)) {
                     foreach ($filters as $filter) {
@@ -49,6 +55,7 @@ class UserGameController extends Controller
             })
             ->orderBy($sort, $order)
             ->paginate($pagination);
+        // Data for pagination
         $data = $request->all();
         return view('collection')->with(['games' => $userGames, 'filters' => $filters, 'data' => $data]);
     }
@@ -118,7 +125,7 @@ class UserGameController extends Controller
             $avatar = User::find($id)->avatar;
             $name = User::find($id)->name;
             return view('wishlist')
-            ->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'avatar' => $avatar, 'name' => $name]);
+                ->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'avatar' => $avatar, 'name' => $name]);
         } else {
             return view('nowishlist');
         }
@@ -169,5 +176,20 @@ class UserGameController extends Controller
         return redirect()->back()
             ->with('message', 'The game ' . $request->name . ' has been updated in your collection.')
             ->with($request->except('_token'));
+    }
+
+    public function search(Request $request)
+    {
+        // Get the search value from the request
+        $search = $request->input('search');
+
+        // Search in the title and body columns from the posts table
+        $posts = UserGame::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%")
+            ->get();
+
+        // Return the search view with the resluts compacted
+        return view('search', compact('posts'));
     }
 }

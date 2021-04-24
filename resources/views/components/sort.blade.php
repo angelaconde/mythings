@@ -40,33 +40,36 @@
                 @php $filterQuery .= ('&filters%5B%5D='.$filter); @endphp
             @endforeach
         @endif
-        <a class="dropdown-item" href="{{ route('collection') }}?sort=name&order=asc{{ $filterQuery ?? '' }}">Name
+        @if (request('search'))
+            @php $searchQuery = '&search='.request('search'); @endphp
+        @endif
+        <a class="dropdown-item" href="{{ route('collection') }}?sort=name&order=asc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Name
             (A to Z)</a>
-        <a class="dropdown-item" href="{{ route('collection') }}?sort=name&order=desc{{ $filterQuery ?? '' }}">Name
+        <a class="dropdown-item" href="{{ route('collection') }}?sort=name&order=desc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Name
             (Z to A)</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=created_at&order=desc{{ $filterQuery ?? '' }}">Added
+            href="{{ route('collection') }}?sort=created_at&order=desc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Added
             (New to Old)</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=created_at&order=asc{{ $filterQuery ?? '' }}">Added
+            href="{{ route('collection') }}?sort=created_at&order=asc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Added
             (Old to New)</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=updated_at&order=desc{{ $filterQuery ?? '' }}">Updated (New to
+            href="{{ route('collection') }}?sort=updated_at&order=desc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Updated (New to
             Old)</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=updated_at&order=asc{{ $filterQuery ?? '' }}">Updated (Old to
+            href="{{ route('collection') }}?sort=updated_at&order=asc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Updated (Old to
             New)</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=hltb_story_mins&order=asc{{ $filterQuery ?? '' }}">Shortest
+            href="{{ route('collection') }}?sort=hltb_story_mins&order=asc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Shortest
             story</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=hltb_story_mins&order=desc{{ $filterQuery ?? '' }}">Longest
+            href="{{ route('collection') }}?sort=hltb_story_mins&order=desc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Longest
             story</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=hltb_completionist_mins&order=asc{{ $filterQuery ?? '' }}">Shortest
+            href="{{ route('collection') }}?sort=hltb_completionist_mins&order=asc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Shortest
             completion</a>
         <a class="dropdown-item"
-            href="{{ route('collection') }}?sort=hltb_completionist_mins&order=desc{{ $filterQuery ?? '' }}">Longest
+            href="{{ route('collection') }}?sort=hltb_completionist_mins&order=desc{{ $filterQuery ?? '' }}{{ $searchQuery ?? ''}}">Longest
             completion</a>
     </div>
 </div>

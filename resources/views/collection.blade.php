@@ -16,6 +16,7 @@
                         <!-- END OF SIDEBAR -->
                         <!-- GAME LIST -->
                         <div class="container-fluid col-12 col-md-8">
+                            @include('components.search')
                             <div class="row">
                                 <div class="col">
                                     @include('components.sort')

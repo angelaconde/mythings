@@ -1,7 +1,14 @@
 <div class="border border-dark rounded mb-3">
     <form action="{{ route('collection') }}" method="GET">
-        <input type="hidden" name="sort" value="{{ request('sort') ?? 'name' }}">
-        <input type="hidden" name="order" value="{{ request('order') ?? 'asc' }}">
+        @if (request('sort'))
+            <input type="hidden" name="sort" value="{{ request('sort') }}">
+        @endif
+        @if (request('order'))
+            <input type="hidden" name="order" value="{{ request('order') }}">
+        @endif
+        @if (request('search'))
+            <input type="hidden" name="search" value="{{ request('search') }}">
+        @endif
         <div class="px-4 py-2">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="filters[]" value="wanted" aria-label="wanted"

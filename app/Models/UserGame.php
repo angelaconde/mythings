@@ -38,4 +38,12 @@ class UserGame extends Model
         'user_id',
         'game_id'
     ];
+
+    /**
+     * The relationship with a Game from the Games table
+     */
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }
