@@ -1,19 +1,15 @@
 <!-- color -->
 @php
-if (strpos($game->hltb_story, 'Mins')) {
+if ($game->hltb_story_mins < 1800) {
     $colorStory = 'badge-info';
-} elseif (filter_var($game->hltb_story, FILTER_SANITIZE_NUMBER_INT) < 30) {
-    $colorStory = 'badge-info';
-} elseif (filter_var($game->hltb_story, FILTER_SANITIZE_NUMBER_INT) > 100) {
+} elseif ($game->hltb_story_mins > 6000) {
     $colorStory = 'badge-danger';
 } else {
     $colorStory = 'badge-warning';
 }
-if (strpos($game->hltb_completionist, 'Mins')) {
+if ($game->hltb_completionist_mins < 1800) {
     $colorCompletionist = 'badge-info';
-} elseif (filter_var($game->hltb_completionist, FILTER_SANITIZE_NUMBER_INT) < 30) {
-    $colorCompletionist = 'badge-info';
-} elseif (filter_var($game->hltb_completionist, FILTER_SANITIZE_NUMBER_INT) > 100) {
+} elseif ($game->hltb_completionist_mins > 6000) {
     $colorCompletionist = 'badge-danger';
 } else {
     $colorCompletionist = 'badge-warning';
