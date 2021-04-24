@@ -1,7 +1,25 @@
 <div class="dropdown">
     <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="sortMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Sort by
+        Sort:
+        @if (str_contains(url()->full(), 'name') && str_contains(url()->full(), 'asc'))
+            Name (A to Z)
+        @endif
+        @if (str_contains(url()->full(), 'name') && str_contains(url()->full(), 'desc'))
+            Name (Z to A)
+        @endif
+        @if (str_contains(url()->full(), 'created') && str_contains(url()->full(), 'desc'))
+            Added (New to Old)
+        @endif
+        @if (str_contains(url()->full(), 'created') && str_contains(url()->full(), 'asc'))
+            Added (Old to New)
+        @endif
+        @if (str_contains(url()->full(), 'updated') && str_contains(url()->full(), 'desc'))
+            Updated (New to Old)
+        @endif
+        @if (str_contains(url()->full(), 'updated') && str_contains(url()->full(), 'asc'))
+            Updated (New to Old)
+        @endif
     </button>
     <div class="dropdown-menu" aria-labelledby="sortMenuButton">
         @if (request('filters'))
