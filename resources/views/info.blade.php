@@ -33,8 +33,7 @@
                                 <div class="col-8 col-md-10 p-2">
                                     <div class="btn-group col-12 m-0 p-0 border border-dark rounded">
                                         <a class='btn btn-danger disabled'><i class="fab fa-google"></i></a>
-                                        <a href="{{ url('/login/google') }}"
-                                            class="btn btn-danger btn-block">
+                                        <a href="{{ url('/login/google') }}" class="btn btn-danger btn-block">
                                             {{ __('Login with Google') }}
                                         </a>
                                     </div>
@@ -57,10 +56,9 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-8 p-2">
-                                    <a class="btn btn-light btn-lg btn-block border-dark" 
-                                        href="{{ route('logout') }}"
+                                    <a class="btn btn-light btn-lg btn-block border-dark" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -75,7 +73,7 @@
                 <!-- LEFT SIDE END -->
                 <!-- RIGHT SIDE -->
                 <div class="col-12 col-md-7 info-img">
-                    <img class="d-block img-fluid w-100" src="http://via.placeholder.com/600x540" alt="info">
+                    <img class="d-block img-fluid w-100" src="{{ asset('img/app/login-picture.jpg') }}" alt="info">
                 </div>
                 <!-- RIGHT SIDE END -->
             </div>
