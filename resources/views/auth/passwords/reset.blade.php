@@ -1,7 +1,7 @@
 @extends('layouts.landing')
 
 @section('content')
-    <div class="p-5">
+    <div class="p-2 p-lg-5">
         <div class="container info-container">
             <div class="row">
                 <div class="col-12">
@@ -68,7 +68,8 @@
 
                                             <div class="form-group row mb-0">
                                                 <div class="col-md-6 offset-md-4">
-                                                    <button type="submit" class="btn btn-light btn-lg btn-block border-dark">
+                                                    <button type="submit"
+                                                        class="btn btn-light btn-lg btn-block border-dark">
                                                         {{ __('Reset Password') }}
                                                     </button>
                                                 </div>

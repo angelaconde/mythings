@@ -1,7 +1,7 @@
 @extends('layouts.landing')
 
 @section('content')
-    <div class="p-5">
+    <div class="p-2 p-lg-5">
         <div class="container info-container">
             <div class="row">
                 <div class="col-12">
@@ -32,7 +32,7 @@
                                         <div class="mt-3">
                                             <span>I think I messed up, please </span>
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                        document.getElementById('logout-form').submit();">
                                                 take me back to the start.
                                             </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"

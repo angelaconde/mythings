@@ -1,7 +1,7 @@
 @extends('layouts.landing')
 
 @section('content')
-    <div class="p-5">
+    <div class="p-2 p-lg-5">
         <div class="container info-container">
             <div class="row">
                 <div class="col-12">

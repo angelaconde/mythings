@@ -1,7 +1,7 @@
 @extends('layouts.landing')
 
 @section('content')
-    <div class="p-5">
+    <div class="p-2 p-lg-5">
         <div class="container info-container">
             <div class="row">
                 <!-- LEFT SIDE -->
@@ -58,7 +58,7 @@
                                 <div class="col-8 p-2">
                                     <a class="btn btn-light btn-lg btn-block border-dark" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
