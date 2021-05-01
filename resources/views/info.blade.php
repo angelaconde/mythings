@@ -69,6 +69,9 @@
                         @endguest
                     </div>
                     <!-- AUTH LINKS END -->
+                    <!-- LEGAL START -->
+                    @include('components.legal-buttons')
+                    @include('components.legal-modals')
                 </div>
                 <!-- LEFT SIDE END -->
                 <!-- RIGHT SIDE -->

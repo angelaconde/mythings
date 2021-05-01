@@ -50,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $messages = [
-            'password.regex' => 'The password must contain a lowercase character, an uppercase character and a number.'
+            'password.regex' => 'The password must contain a lowercase character, an uppercase character and a number.',
         ];
         return Validator::make(
             $data,
@@ -58,6 +58,7 @@ class RegisterController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', 'confirmed'],
+                'terms' => ['accepted']
             ],
             $messages
         );

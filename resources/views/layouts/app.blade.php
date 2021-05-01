@@ -78,10 +78,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('users.profile', Auth::user()->id) }}">My
                                         profile</a>
-                                    <a class="dropdown-item" href="#">My public page</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                         document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -98,6 +98,7 @@
 
         <main class="py-4">
             @yield('content')
+            @include('components.footer')
         </main>
     </div>
 </body>
