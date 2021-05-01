@@ -29,6 +29,17 @@
                                             <button type="submit"
                                                 class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                                         </form>
+                                        <div class="mt-3">
+                                            <span>I think I messed up, please </span>
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                take me back to the start.
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
