@@ -26,6 +26,8 @@ Route::get('profile/{user}', 'UserController@view')->name('users.profile');
 Route::patch('users/updatename', 'UserController@updateName')->name('users.updatename');
 Route::patch('users/avatar', 'UserController@uploadAvatar')->name('users.avatar');
 Route::patch('users/avatar/reset', 'UserController@resetAvatar')->name('users.avatar.reset');
+Route::get('users/{user}/confirmdelete', 'UserController@confirmDelete')->name('users.confirmdelete');
+Route::get('users/{user}/delete/', 'UserController@delete')->name('users.delete');
 
 // User's games CRUD
 Route::post('add', 'GameController@addGame')->name('add');

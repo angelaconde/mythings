@@ -90,6 +90,12 @@
                 @endif
             </div>
         </div>
+        <div class="row mt-2">
+            <div class="col text-right">
+                <a href="{{ route('users.confirmdelete', Auth::user()) }}" class="btn btn-danger btn-sm">Delete
+                    account</a>
+            </div>
+        </div>
         <!-- NAME MODAL -->
         <div id="edit-name-modal" class="modal text-left" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">

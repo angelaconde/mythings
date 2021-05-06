@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -120,5 +120,18 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()->with('message', 'Your wishlist is now public.');
+    }
+
+    public function confirmDelete(User $user)
+    {
+        return view('confirmdelete', compact('user'));
+    }
+
+    public function delete(User $user)
+    {
+        $user->deleted_at = NOW();
+        $user->email = $user->email . '_deactivated_' . time();
+        $user->save();
+        return redirect('/');
     }
 }
