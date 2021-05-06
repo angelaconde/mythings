@@ -24,6 +24,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected $maxAttempts = 3; // Default is 5
+    protected $decayMinutes = 5; // Default is 1
+
     /**
      * Where to redirect users after login.
      *
