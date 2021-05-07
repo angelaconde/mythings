@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserGame;
+use App\Models\Game;
 use App\Models\User;
 use stdClass;
 
@@ -178,6 +179,11 @@ class UserGameController extends Controller
             ->with($request->except('_token'));
     }
 
+    /** 
+     * Search for game title in user's collection
+     * 
+     * @return void
+     */
     public function search(Request $request)
     {
         // Get the search value from the request
@@ -189,7 +195,32 @@ class UserGameController extends Controller
             ->orWhere('body', 'LIKE', "%{$search}%")
             ->get();
 
-        // Return the search view with the resluts compacted
+        // Return the search view with the results compacted
         return view('search', compact('posts'));
+    }
+
+    /** 
+     * Get releases of user's games
+     * 
+     * @return json
+     */
+    public function getReleases()
+    {
+        // Get games
+        $games = UserGame::where('user_id', Auth::user()->id)
+            ->get();
+
+        // Get their dates and build the events
+        foreach ($games as $key => $game) {
+            $release_info = Game::where('id', $game->game_id)
+                ->get();
+            $event_data[$key]['event_id'] = $release_info[0]->id;
+            $event_data[$key]['title'] = $release_info[0]->name;
+            $event_data[$key]['start'] = date('Y-m-d', strtotime($release_info[0]->first_release_date));
+            $event_data[$key]['end'] = date('Y-m-d', strtotime($release_info[0]->first_release_date . ' + 1 day'));
+            $event_data[$key]['url'] = route('details', $release_info[0]->id);
+        }
+
+        return $event_data;
     }
 }

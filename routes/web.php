@@ -46,6 +46,10 @@ Route::patch('wishlist/public', 'UserController@makeWishlistPublic')->name('wish
 // Game details
 Route::get('/details/{id}', 'GameController@details')->name('details');
 
+// Calendar
+Route::get('/getreleases', 'UserGameController@getReleases')->name('releases');
+Route::view('/releases', 'releases')->name('releases');
+
 // OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('{provider}/callback', 'Auth\LoginController@handleProviderCallback');

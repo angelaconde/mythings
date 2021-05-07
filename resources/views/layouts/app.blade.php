@@ -14,6 +14,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/collection.js') }}" defer></script>
     <script src="{{ asset('js/details.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+        integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+        crossorigin="anonymous"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,6 +28,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/collection.css') }}" rel="stylesheet">
     <link href="{{ asset('css/details.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css">
 
 </head>
 
@@ -50,6 +56,10 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('stats') ? 'active' : '' }}"
                                 href="{{ route('stats') }}">My stats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('stats') ? 'active' : '' }}"
+                                href="{{ route('releases') }}">Releases</a>
                         </li>
                     </ul>
 
@@ -81,7 +91,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
+                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
