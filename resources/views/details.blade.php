@@ -86,7 +86,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="modal-image">
+                        <div class="modal-image text-center">
                             <img class="img-fluid p-2"
                                 src="{{ asset('img/games/screenshot\/') . $game->screenshot_1 . '.jpg' }}" alt="...">
                         </div>
@@ -105,7 +105,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="modal-image">
+                        <div class="modal-image text-center">
                             <img class="img-fluid p-2"
                                 src="{{ asset('img/games/screenshot\/') . $game->screenshot_2 . '.jpg' }}" alt="...">
                         </div>
