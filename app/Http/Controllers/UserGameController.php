@@ -180,26 +180,6 @@ class UserGameController extends Controller
     }
 
     /** 
-     * Search for game title in user's collection
-     * 
-     * @return void
-     */
-    public function search(Request $request)
-    {
-        // Get the search value from the request
-        $search = $request->input('search');
-
-        // Search in the title and body columns from the posts table
-        $posts = UserGame::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('body', 'LIKE', "%{$search}%")
-            ->get();
-
-        // Return the search view with the results compacted
-        return view('search', compact('posts'));
-    }
-
-    /** 
      * Get releases of user's games
      * 
      * @return json
