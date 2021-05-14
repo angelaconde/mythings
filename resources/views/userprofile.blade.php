@@ -78,6 +78,9 @@
                     </form>
                 @else
                     <h2>Your wishlist is currently private.</h2>
+                    <a href="{{ url('wishlist/' . Auth::user()->id) }}">
+                        <h3>{{ url('wishlist/' . Auth::user()->id) }}</h3>
+                    </a>
                     <form action="{{ route('wishlist.public') }}" method="POST">
                         @csrf
                         @method('PATCH')

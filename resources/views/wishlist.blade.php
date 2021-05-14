@@ -43,16 +43,29 @@
             <div class="container col-12 col-lg-6 mb-2">
                 <div class="row">
                     <div class="col-3 p-3 text-center">
-                        <img src="{{ asset('img/avatars\/' . $avatar) }}"
+                        <img src="{{ asset('img/avatars\/' . $user->avatar) }}"
                             class="avatar rounded-circle border border-dark" alt="avatar">
                     </div>
                     <div class="col-9 align-self-center p-3 text-center">
-                        <h1 class="d-none d-lg-inline">{{ $name }}'s wishlist</h1>
-                        <h2 class="d-lg-none">{{ $name }}'s wishlist</h2>
+                        <h1 class="d-none d-lg-inline">{{ $user->name }}'s wishlist</h1>
+                        <h2 class="d-lg-none">{{ $user->name }}'s wishlist</h2>
                     </div>
                 </div>
             </div>
             <div class="container">
+                @auth
+                    @if (Auth::user()->id == $user->id)
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            Your wishlist is currently
+                            {{ $user->wishlist == 0 ? 'PRIVATE. Only you can see it.' : 'PUBLIC. Everybody can see it.' }}
+                            You can change that
+                            <a href="{{ route('users.profile', Auth::user()->id) }}" class="alert-link">HERE</a>.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                @endauth
                 @include('components.tabs')
                 <!-- TABS CONTENT -->
                 <div class="tab-content" id="myTabContent">

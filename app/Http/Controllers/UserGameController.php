@@ -98,48 +98,67 @@ class UserGameController extends Controller
      */
     public function showWishlist(Request $request, $id)
     {
-        if ($this->isWishlistPublic($id)) {
-            $pagination = env('PAGINATION_WISHLIST', 12);
-            $filters = ['wanted'];
-            $userGames = UserGame::leftjoin('games', 'games.id', '=', 'user_games.game_id')
-                ->select(
-                    'games.name',
-                    'games.summary',
-                    'games.cover',
-                    'games.platform',
-                    'games.screenshot_1',
-                    'games.screenshot_2',
-                    'games.video',
-                    'user_games.*'
-                )
-                ->where('user_id', $id)
-                ->where(function ($query) use ($filters) {
-                    if (isset($filters)) {
-                        foreach ($filters as $filter) {
-                            $query->where($filter, 1);
-                        }
-                    }
-                })
-                ->orderBy('name')
-                ->paginate($pagination);
-            $data = $request->all();
-            $avatar = User::find($id)->avatar;
-            $name = User::find($id)->name;
-            return view('wishlist')
-                ->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'avatar' => $avatar, 'name' => $name]);
+        if ($this->isWishlistPublic($id) || $this->isWishlistOwner($id)) {
+            return $this->getWishlist($request, $id);
         } else {
             return view('nowishlist');
         }
     }
 
+    /** 
+     * Get wishlist
+     * 
+     * @return
+     */
+    public function getWishlist(Request $request, $id)
+    {
+        $pagination = env('PAGINATION_WISHLIST', 12);
+        $filters = ['wanted'];
+        $userGames = UserGame::leftjoin('games', 'games.id', '=', 'user_games.game_id')
+            ->select(
+                'games.name',
+                'games.summary',
+                'games.cover',
+                'games.platform',
+                'games.screenshot_1',
+                'games.screenshot_2',
+                'games.video',
+                'user_games.*'
+            )
+            ->where('user_id', $id)
+            ->where(function ($query) use ($filters) {
+                if (isset($filters)) {
+                    foreach ($filters as $filter) {
+                        $query->where($filter, 1);
+                    }
+                }
+            })
+            ->orderBy('name')
+            ->paginate($pagination);
+        $data = $request->all();
+        $user = User::find($id);
+        return view('wishlist')
+            ->with(['games' => $userGames, 'filters' => $filters, 'data' => $data, 'user' => $user]);
+    }
+
     /**
-     * Get whether user's wishlist is public
+     * Check whether user's wishlist is public
      *
      * @return boolean
      */
     public function isWishlistPublic($id)
     {
         return User::find($id)->wishlist;
+    }
+
+    /**
+     * Check if current authenticated user is wishlist's owner
+     *
+     * @return boolean
+     */
+    public function isWishlistOwner($id)
+    {
+        return Auth::check() ? (Auth::user()->id == $id) : false;
     }
 
     /**
