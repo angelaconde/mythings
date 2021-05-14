@@ -30,8 +30,9 @@ class GameController extends Controller
             'title' => ['required', 'string', 'min:3']
         ]);
         // Look for game in API
-        $name = $request->title;
-        $gameInfo = $this->getGameInfoByNameFromAPI($name);
+        $game = new Game();
+        $game->name = $request->title;
+        $gameInfo = $this->getGameInfoByNameFromAPI($game->name);
         // Not found
         if (!$gameInfo) {
             $message = "We couldn't find this game, sorry!";
@@ -41,13 +42,14 @@ class GameController extends Controller
             // Get his API id
             $apiID = $gameInfo[0]['id'];
             // Check it's not already in DB
-            $alreadyInDB = $this->gameInDB($apiID);
+            $alreadyInDB = $game->gameInDB($apiID);
             // Is in DB
             if ($alreadyInDB) {
                 // Get game id
-                $gameID = $this->getIDbyApiID($apiID);
+                $gameID = $game->getIDbyApiID($apiID);
                 // Check it's not already in user collection
-                $alreadyInUserCollection = $this->gameInUserCollection($gameID);
+                $userGame = new UserGame();
+                $alreadyInUserCollection = $userGame->gameInUserCollection($gameID);
                 // Is in collection
                 if ($alreadyInUserCollection) {
                     $message = "You already have this game in your collection.";
@@ -65,14 +67,10 @@ class GameController extends Controller
                 // If not in DB
                 // Get HLTB
                 $hltb = $this->getHLTB($gameInfo[0]['name']);
-                // Add to DB and save cover and images
+                // Add to DB
                 $game = $this->makeGame($gameInfo, $hltb);
-                $this->storeImage($game->cover, 'coverBig');
-                $this->storeImage($game->cover, 'coverSmall');
-                $this->storeImage($game->screenshot_1, 'screenshot');
-                $this->storeImage($game->screenshot_1, 'thumbnail');
-                $this->storeImage($game->screenshot_2, 'screenshot');
-                $this->storeImage($game->screenshot_2, 'thumbnail');
+                // Save cover and images in folder
+                $this->storeInFolder($game);
                 // Make UserGame and add to DB
                 $this->makeUserGame(Auth::user()->id, $game->id, $request);
                 // Return success message
@@ -80,34 +78,6 @@ class GameController extends Controller
                 return redirect()->back()->with('message', $message)->with($request->except('_token'));
             }
         }
-    }
-
-    /**
-     * Look for the game in the database by API id.
-     * 
-     * @return boolean
-     */
-    function gameInDB($id)
-    {
-        return Game::where('api_id', $id)->exists();
-    }
-
-    /**
-     * Look for the game in the user collection by API id.
-     * 
-     * @return boolean
-     */
-    function gameInUserCollection($id)
-    {
-        return UserGame::where('user_id', Auth::user()->id)->where('game_id', $id)->exists();
-    }
-
-    /** 
-     * Get game ID by his API_ID
-     */
-    function getIDbyApiID($apiID)
-    {
-        return Game::where('api_id', $apiID)->firstOrFail()->id;
     }
 
     /**
@@ -166,6 +136,21 @@ class GameController extends Controller
     function imageExists($image)
     {
         return !str_contains($image, 'not_found');
+    }
+
+    /** 
+     * Store all images in folder
+     * 
+     * @return void
+     */
+    function storeInFolder($game)
+    {
+        $this->storeImage($game->cover, 'coverBig');
+        $this->storeImage($game->cover, 'coverSmall');
+        $this->storeImage($game->screenshot_1, 'screenshot');
+        $this->storeImage($game->screenshot_1, 'thumbnail');
+        $this->storeImage($game->screenshot_2, 'screenshot');
+        $this->storeImage($game->screenshot_2, 'thumbnail');
     }
 
     /**
@@ -238,7 +223,7 @@ class GameController extends Controller
      * 
      * @return array
      */
-    public function getHLTB($name)
+    function getHLTB($name)
     {
         // Set client
         $client = new Client([

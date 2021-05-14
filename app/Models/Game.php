@@ -47,4 +47,24 @@ class Game extends Model
     protected $casts = [
         'first_release_date' => 'date',
     ];
+
+    /**
+     * Look for the game in the database by API id.
+     * 
+     * @return boolean
+     */
+    public function gameInDB($id)
+    {
+        return Game::where('api_id', $id)->exists();
+    }
+
+    /** 
+     * Get game ID by his API_ID
+     * 
+     * @return Game
+     */
+    public function getIDbyApiID($apiID)
+    {
+        return Game::where('api_id', $apiID)->firstOrFail()->id;
+    }
 }

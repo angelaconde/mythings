@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class UserGame extends Model
 {
@@ -45,5 +46,15 @@ class UserGame extends Model
     public function game()
     {
         return $this->belongsTo(Game::class);
+    }
+
+    /**
+     * Look for the game in the user collection by API id.
+     * 
+     * @return boolean
+     */
+    function gameInUserCollection($id)
+    {
+        return UserGame::where('user_id', Auth::user()->id)->where('game_id', $id)->exists();
     }
 }
