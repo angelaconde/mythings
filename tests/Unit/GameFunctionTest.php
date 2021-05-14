@@ -92,9 +92,17 @@ class GameFunctionTest extends TestCase
                 true,
                 'fm45msld',
             ],
-            'image found: numeric id' => [
+            'image found: numeric id as string' => [
                 true,
                 '5845849',
+            ],
+            'image found: numeric id as integer' => [
+                true,
+                5845849,
+            ],
+            'image found: numeric id as negative integer' => [
+                true,
+                -1,
             ],
             'image found: string with whitespaces in the middle' => [
                 true,
