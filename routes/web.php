@@ -48,7 +48,7 @@ Route::get('/details/{id}', 'GameController@details')->name('details');
 
 // Calendar
 Route::get('/getreleases', 'UserGameController@getReleases')->name('releases');
-Route::view('/releases', 'releases')->name('releases');
+Route::view('/releases', 'releases')->middleware('auth')->name('releases');
 
 // OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
