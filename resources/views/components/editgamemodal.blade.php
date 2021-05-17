@@ -15,9 +15,9 @@
                         <input id="edit-id" name="id" hidden>
                         <input id="edit-name" name="name" hidden>
                         <div class="form-group row">
-                            <label for="title" class="col-3 col-form-label">Title</label>
+                            <label for="edit-title" class="col-3 col-form-label">Title</label>
                             <div class="col-9">
-                                <p id="edit-title"></p>
+                                <h4 id="edit-title"></h4>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -106,8 +106,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button name="submit" type="submit" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button name="submit" type="submit" class="btn btn-dark">Confirm changes</button>
                         </div>
                     </form>
                 </div>

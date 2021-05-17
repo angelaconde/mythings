@@ -18,7 +18,7 @@
                     <h1 class="text-center" id="nametext"></h1>
                     <h4 class="text-center">Are you sure?</h4>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer p-3">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger">Yes, remove the game</button>
             </div>

@@ -5,7 +5,7 @@
             data-digital="{{ $game->digital }}" data-plus="{{ $game->plus }}" data-now="{{ $game->now }}"
             data-started="{{ $game->started }}" data-finished="{{ $game->finished }}"
             data-completed="{{ $game->completed }}" data-abandoned="{{ $game->abandoned }}"
-            class="btn btn-primary btn-sm mt-3 editgamebutton" data-toggle="modal" data-target="#edit-game-modal"><i
+            class="btn btn-dark btn-sm mt-3 editgamebutton" data-toggle="modal" data-target="#edit-game-modal"><i
                 class="fas fa-edit"></i></a>
         <!-- DELETE BUTTON -->
         <a href="#" data-id="{{ $game->id }}" data-name="{{ $game->name }}"

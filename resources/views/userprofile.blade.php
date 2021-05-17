@@ -39,7 +39,7 @@
                     @method('PATCH')
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <button type="submit" class="btn btn-dark btn-sm">Reset to default avatar</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Reset to default avatar</button>
                         </div>
                     </div>
                 </form>
@@ -126,8 +126,8 @@
                                     @enderror
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button name="submit" type="submit" class="btn btn-primary">Change name</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button name="submit" type="submit" class="btn btn-dark">Confirm change</button>
                                 </div>
                             </form>
                         </div>
