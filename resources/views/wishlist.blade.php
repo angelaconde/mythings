@@ -103,7 +103,8 @@
                                                         <a href="https://www.amazon.co.uk/s?i=videogames&k={{ $game->name }}"
                                                             target="_blank">
                                                             <img src="{{ asset('img/app/amazon.png') }}"
-                                                                class="border border-dark rounded"></a>
+                                                                class="border border-dark rounded"
+                                                                src="amazon logo"></a>
                                                     </div>
                                                 </div>
                                             </div>

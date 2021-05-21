@@ -4,7 +4,7 @@
 
 <div class="container p-2">
     <span>If you stumbled upon this site somehow and you like what you see you can:</span>
-    <a href="#"><img class="img-fluid" src="{{ asset('img/app/kofi.png') }}"></a>
+    <a href="#"><img class="img-fluid" src="{{ asset('img/app/kofi.png') }}" alt="kofi logo"></a>
 </div>
 
 <div class="container p-2">

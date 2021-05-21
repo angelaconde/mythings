@@ -11,7 +11,7 @@
         stop using the Website immediately.
     </p>
 
-    <p>In these terms and conditions, <b>User</b> or <b>Users</b> means any third party that accesses the Website and is
+    <p>In these terms and conditions, <strong>User</strong> or <strong>Users</strong> means any third party that accesses the Website and is
         not either (i) employed by My Things and acting in the course of their employment or (ii) engaged as a
         consultant or otherwise providing
         services to My Things and accessing the Website in connection with the provision of such services.
@@ -95,7 +95,7 @@
 
                 <ol>
                     <li>Any online facilities, tools, services or information that My Things
-                        makes available through the Website (the <b>Service</b>) is provided "as is" and on an
+                        makes available through the Website (the <strong>Service</strong>) is provided "as is" and on an
                         "as available" basis. We give no warranty that the Service will be free of defects and/or
                         faults. To the maximum extent permitted by the law, we provide no warranties (express or
                         implied) of fitness for a particular purpose, accuracy of information, compatibility and

@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-12 col-lg-7 px-3 px-lg-0 pt-2 text-center">
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe id="smallvideoframe" class="embed-responsive-item"
+                            <iframe id="smallvideoframe" class="embed-responsive-item" title="youtube video"
                                 src="https://www.youtube.com/embed/{{ $game->video }}" webkitallowfullscreen
                                 mozallowfullscreen allowfullscreen></iframe>
                         </div>
@@ -66,7 +66,7 @@
                     <div class="modal-body">
                         <div class="modal-video p-2">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe id="videoframe" class="embed-responsive-item"
+                                <iframe id="videoframe" class="embed-responsive-item" title="youtube video"
                                     src="https://www.youtube.com/embed/{{ $game->video }}" webkitallowfullscreen
                                     mozallowfullscreen allowfullscreen></iframe>
                             </div>
