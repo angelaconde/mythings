@@ -81,23 +81,11 @@ class RoutesTest extends TestCase
      *
      * @return void
      */
-    public function testRouteProfileThatExists()
+    public function testRouteProfile()
     {
         $user = User::all()->random();
-        $response = $this->actingAs($user)->get('profile/1');
+        $response = $this->actingAs($user)->get('profile');
         $response->assertStatus(200);
-    }
-
-    /**
-     * Route test.
-     *
-     * @return void
-     */
-    public function testRouteProfileThatDoesNotExist()
-    {
-        $user = User::all()->random();
-        $response = $this->actingAs($user)->get('profile/A');
-        $response->assertStatus(404);
     }
 
     /**
