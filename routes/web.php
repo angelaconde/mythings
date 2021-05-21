@@ -22,7 +22,7 @@ Auth::routes(['verify' => true]);
 Route::get('/authcheck', [App\Http\Controllers\HomeController::class, 'index'])->name('authcheck');
 
 // Users
-Route::get('profile/{user}', 'UserController@view')->name('users.profile');
+Route::get('profile', 'UserController@view')->name('users.profile');
 Route::patch('users/updatename', 'UserController@updateName')->name('users.updatename');
 Route::patch('users/avatar', 'UserController@uploadAvatar')->name('users.avatar');
 Route::patch('users/avatar/reset', 'UserController@resetAvatar')->name('users.avatar.reset');

@@ -15,11 +15,21 @@ class UserController extends Controller
     }
 
     /**
+     * Check if the user is the authenticated user
+     * 
+     * @return boolean
+     */
+    public function isSelf(User $user)
+    {
+        return $user->id == Auth::user()->id ? true : false;
+    }
+
+    /**
      * Display the user's profile
      * 
      * @return void
      */
-    public function view(User $user)
+    public function view()
     {
         $user = Auth::user();
         return view('userprofile', compact('user'));
@@ -122,16 +132,34 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Your wishlist is now public.');
     }
 
+    /**
+     * Confirms deleting user
+     * 
+     * @return void
+     */
     public function confirmDelete(User $user)
     {
-        return view('confirmdelete', compact('user'));
+        if ($this->isSelf($user)) {
+            return view('confirmdelete', compact('user'));
+        } else {
+            return view('errors.500');
+        }
     }
 
+    /**
+     * Deletes user
+     * 
+     * @return void
+     */
     public function delete(User $user)
     {
-        $user->deleted_at = NOW();
-        $user->email = $user->email . '_deactivated_' . time();
-        $user->save();
-        return redirect('/');
+        if ($this->isSelf($user)) {
+            $user->deleted_at = NOW();
+            $user->email = $user->email . '_deactivated_' . time();
+            $user->save();
+            return redirect('/');
+        } else {
+            return view('errors.500');
+        }
     }
 }

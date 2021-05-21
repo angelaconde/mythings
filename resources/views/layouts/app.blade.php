@@ -86,7 +86,7 @@
                                 </a>
                                 <span id="user-id" hidden>{{ Auth::user()->id }}</span>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('users.profile', Auth::user()->id) }}">My
+                                    <a class="dropdown-item" href="{{ route('users.profile') }}">My
                                         profile</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
