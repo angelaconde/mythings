@@ -104,7 +104,7 @@
                                                             target="_blank">
                                                             <img src="{{ asset('img/app/amazon.png') }}"
                                                                 class="border border-dark rounded"
-                                                                src="amazon logo"></a>
+                                                                alt="amazon logo"></a>
                                                     </div>
                                                 </div>
                                             </div>
