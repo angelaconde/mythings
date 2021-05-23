@@ -11,5 +11,12 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-public/img/games/
+public/img/games/cover_big/*
+!public/img/games/cover_big/cover_not_found.jpg
+public/img/games/cover_small/*
+!public/img/games/cover_small/cover_not_found.jpg
+public/img/games/screenshot/*
+!public/img/games/screenshot/screenshot_not_found.jpg
+public/img/games/thumbnail/*
+!public/img/games/thumbnail/screenshot_not_found.jpg
 .scannerwork
