@@ -100,7 +100,7 @@
                                                 <div class="col-9">
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{ $game->name }}</h5>
-                                                        <a href="https://www.amazon.co.uk/s?i=videogames&k={{ $game->name }}"
+                                                        <a href="{{ $amazon }}{{ $game->name }}"
                                                             target="_blank">
                                                             <img src="{{ asset('img/app/amazon.png') }}"
                                                                 class="border border-dark rounded"
