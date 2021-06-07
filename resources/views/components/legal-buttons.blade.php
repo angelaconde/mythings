@@ -8,4 +8,5 @@
     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#privacyModal">
         Privacy policy
     </button>
+    <a href="{{ route('contact') }}" class="btn btn-link">Contact us</a>
 </div>

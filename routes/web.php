@@ -53,3 +53,7 @@ Route::view('/releases', 'releases')->middleware('auth')->name('releases');
 // OAuth
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+// Contact Us
+Route::view('/contact', 'contact')->name('contact');
+Route::post('contactform', 'ContactController@contactform')->name('contactform');

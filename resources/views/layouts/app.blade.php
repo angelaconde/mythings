@@ -36,9 +36,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand border border-white rounded p-1" href="{{ url('/') }}">
                     <img src="{{ asset('img/app/logo_icon_empty.png') }}" width="30" height="30"
-                        class="d-inline-block align-top border border-white rounded" alt="">
+                        class="d-inline-block align-top border border-white rounded" alt="logo"> My Things
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -48,6 +48,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @Auth
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('collection') ? 'active' : '' }}"
@@ -62,6 +63,7 @@
                                 href="{{ route('releases') }}">Releases</a>
                         </li>
                     </ul>
+                    @endAuth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

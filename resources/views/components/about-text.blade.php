@@ -11,3 +11,7 @@
     <span>If you're a developer you can check the repository here:</span>
     <a href="https://github.com/angelaconde/mythings">https://github.com/angelaconde/mythings</a>
 </div>
+
+<div class="container p-2">
+    <span>If you have something to tell us you can do that <a href="{{ route('contact') }}">HERE</a>.</span>
+</div>
