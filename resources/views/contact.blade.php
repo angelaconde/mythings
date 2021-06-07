@@ -57,6 +57,17 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group d-none">
+                                <div class="input-group mb-2">
+                                    <input type="checkbox" class="form-control @error('trap') is-invalid @enderror"
+                                        id="trap" name="trap" hidden>
+                                    @error('trap')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="text-center">
                                 <input type="submit" value="Submit" class="btn btn-dark btn-block py-2">
                             </div>
