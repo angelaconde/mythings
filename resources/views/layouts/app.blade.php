@@ -59,7 +59,7 @@
                                 href="{{ route('stats') }}">My stats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('stats') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->is('releases') ? 'active' : '' }}"
                                 href="{{ route('releases') }}">Releases</a>
                         </li>
                     </ul>
