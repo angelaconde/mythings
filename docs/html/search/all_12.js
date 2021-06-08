@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['game_225',['Game',['../class_app_1_1_models_1_1_game.html',1,'Game'],['../class_app_1_1_models_1_1_user_game.html#ad74f7538285e78bfe0756d77ef389653',1,'App\Models\UserGame\game()']]],
+  ['game_2eblade_2ephp_226',['game.blade.php',['../game_8blade_8php.html',1,'']]],
+  ['game_2ephp_227',['Game.php',['../_game_8php.html',1,'']]],
+  ['gamebuttons_2eblade_2ephp_228',['gamebuttons.blade.php',['../gamebuttons_8blade_8php.html',1,'']]],
+  ['gamecontroller_229',['GameController',['../class_app_1_1_http_1_1_controllers_1_1_game_controller.html',1,'App::Http::Controllers']]],
+  ['gamecontroller_2ephp_230',['GameController.php',['../_game_controller_8php.html',1,'']]],
+  ['gamefunctiontest_231',['GameFunctionTest',['../class_tests_1_1_unit_1_1_game_function_test.html',1,'Tests::Unit']]],
+  ['gamefunctiontest_2ephp_232',['GameFunctionTest.php',['../_game_function_test_8php.html',1,'']]],
+  ['gameindb_233',['gameInDB',['../class_app_1_1_models_1_1_game.html#a7bd248d3398d3c8a98f603a9948d25eb',1,'App::Models::Game']]],
+  ['gameinusercollection_234',['gameInUserCollection',['../class_app_1_1_models_1_1_user_game.html#a25df73f1a191f0a76c835269dee2104f',1,'App::Models::UserGame']]],
+  ['getamazoncountryextension_235',['getAmazonCountryExtension',['../class_app_1_1_http_1_1_controllers_1_1_wishlist_controller.html#a517d403bc721f13660156e7c09acdaed',1,'App::Http::Controllers::WishlistController']]],
+  ['getamazonurl_236',['getAmazonURL',['../class_app_1_1_http_1_1_controllers_1_1_wishlist_controller.html#ac5325048137b21dde88897e5f8c47700',1,'App::Http::Controllers::WishlistController']]],
+  ['getgameinfobynamefromapi_237',['getGameInfoByNameFromAPI',['../class_app_1_1_http_1_1_controllers_1_1_game_controller.html#ae430feb447b52ed889c5b35d206a79fb',1,'App::Http::Controllers::GameController']]],
+  ['gethltb_238',['getHLTB',['../class_app_1_1_http_1_1_controllers_1_1_game_controller.html#a8f1b22213c0b3fc9f637601f74a4a772',1,'App::Http::Controllers::GameController']]],
+  ['getidbyapiid_239',['getIDbyApiID',['../class_app_1_1_models_1_1_game.html#aaa173789bddeee46c3e0dd39aaa72be4',1,'App::Models::Game']]],
+  ['getreleases_240',['getReleases',['../class_app_1_1_http_1_1_controllers_1_1_user_game_controller.html#a235d3ab91ef042ddbd3b51dbfdf06a60',1,'App::Http::Controllers::UserGameController']]],
+  ['getstats_241',['getStats',['../class_app_1_1_http_1_1_controllers_1_1_user_game_controller.html#acf0272219b2977c1dc461ed86e995947',1,'App::Http::Controllers::UserGameController']]],
+  ['getvisitorcountry_242',['getVisitorCountry',['../class_app_1_1_http_1_1_controllers_1_1_wishlist_controller.html#aba5bce31d2ad60f14794d8b78350fb7b',1,'App::Http::Controllers::WishlistController']]],
+  ['getwishlist_243',['getWishlist',['../class_app_1_1_http_1_1_controllers_1_1_wishlist_controller.html#aa3e246e31c4a764b6b5d50088c875866',1,'App::Http::Controllers::WishlistController']]]
+];

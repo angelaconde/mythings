@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['unverified_785',['unverified',['../class_database_1_1_factories_1_1_user_factory.html#adffb240983ed90628323f925d6db01ce',1,'Database::Factories::UserFactory']]],
+  ['up_786',['up',['../class_create_users_table.html#a4edef5efd5ab94ce9d17295898ead93a',1,'CreateUsersTable\up()'],['../class_create_password_resets_table.html#a4edef5efd5ab94ce9d17295898ead93a',1,'CreatePasswordResetsTable\up()'],['../class_create_failed_jobs_table.html#a4edef5efd5ab94ce9d17295898ead93a',1,'CreateFailedJobsTable\up()'],['../class_create_games_table.html#a4edef5efd5ab94ce9d17295898ead93a',1,'CreateGamesTable\up()'],['../class_create_user_games_table.html#a4edef5efd5ab94ce9d17295898ead93a',1,'CreateUserGamesTable\up()'],['../class_auditing.html#a4edef5efd5ab94ce9d17295898ead93a',1,'Auditing\up()'],['../class_auditing_user.html#a4edef5efd5ab94ce9d17295898ead93a',1,'AuditingUser\up()'],['../class_auditing_insert.html#a4edef5efd5ab94ce9d17295898ead93a',1,'AuditingInsert\up()'],['../class_auditing_update.html#a4edef5efd5ab94ce9d17295898ead93a',1,'AuditingUpdate\up()'],['../class_auditing_delete.html#a4edef5efd5ab94ce9d17295898ead93a',1,'AuditingDelete\up()']]],
+  ['update_787',['update',['../class_app_1_1_http_1_1_controllers_1_1_user_game_controller.html#afdc1029c759eec7e6241e0265b43551a',1,'App::Http::Controllers::UserGameController']]],
+  ['updatename_788',['updateName',['../class_app_1_1_http_1_1_controllers_1_1_user_controller.html#a43c805e9a5bfd0c9114947c618031d97',1,'App::Http::Controllers::UserController']]],
+  ['uploadavatar_789',['uploadAvatar',['../class_app_1_1_http_1_1_controllers_1_1_user_controller.html#a5a231351bcb076eac60359660a1fbc63',1,'App::Http::Controllers::UserController']]],
+  ['url_790',['url',['../class_tests_1_1_browser_1_1_pages_1_1_home_page.html#abc5ed2ad3f9365fb31cc1eb625b974d9',1,'Tests::Browser::Pages::HomePage']]]
+];
