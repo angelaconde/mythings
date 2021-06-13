@@ -1,4 +1,7 @@
 # My Things
+
+![Preview](https://github.com/angelaconde/mythings/blob/main/preview.png)
+
 ------------
 ## Cómo instalar la aplicación de forma local:
 ### 1. Descarga o clona el repositorio
