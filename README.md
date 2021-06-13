@@ -1,6 +1,6 @@
 # My Things
 
-![Preview](https://github.com/angelaconde/mythings/blob/main/preview.png)
+![Preview](https://github.com/angelaconde/mythings/blob/main/preview.jpg)
 
 ------------
 ## Cómo instalar la aplicación de forma local:
