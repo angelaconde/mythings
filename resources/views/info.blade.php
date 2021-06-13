@@ -5,7 +5,7 @@
         <div class="container info-container">
             <div class="row">
                 <!-- LEFT SIDE -->
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-lg-5">
                     <!-- LOGO -->
                     @include('logo')
                     <!-- LOGO END -->
@@ -75,8 +75,8 @@
                 </div>
                 <!-- LEFT SIDE END -->
                 <!-- RIGHT SIDE -->
-                <div class="col-12 col-md-7 info-img">
-                    <img class="d-block img-fluid w-100" src="{{ asset('img/app/login-picture.jpg') }}" alt="info">
+                <div class="col-12 col-lg-7 info-img">
+                    <img class="d-block img-fluid" src="{{ asset('img/app/login-picture.jpg') }}" alt="info">
                 </div>
                 <!-- RIGHT SIDE END -->
             </div>
