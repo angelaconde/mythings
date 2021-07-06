@@ -3,6 +3,11 @@
 ![Preview](https://github.com/angelaconde/mythings/blob/main/preview.jpg)
 
 ------------
+## Documentación:
+### Puedes descargar el documento del proyecto en PDF aquí: [Documento](https://github.com/angelaconde/mythings/tree/main/docs/Proyecto.pdf).
+### También puedes descargar la presentación aquí: [Presentación](https://github.com/angelaconde/mythings/tree/main/docs/Presentacion.pdf).
+### Tienes la documentación en la ruta [docs/html/index.html](https://github.com/angelaconde/mythings/tree/main/docs/html), tendrás que descargar el proyecto para poder visualizarla correctamente.
+------------
 ## Cómo instalar la aplicación de forma local:
 ### 1. Descarga o clona el repositorio
 `git clone https://github.com/angelaconde/mythings.git`
